@@ -1,4 +1,4 @@
-package org.saltframework.core.boot.config;
+package org.saltframework.boot.config;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;

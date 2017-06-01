@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.saltframework.apps.validation.model.Form;
 import org.saltframework.apps.validation.model.Store;
-import org.saltframework.core.boot.Bootstrap;
-import org.saltframework.core.boot.servlet.ValidationServletConfiguration;
+import org.saltframework.boot.BootstrapBeanContext;
+import org.saltframework.boot.servlet.ServletApplicationContext;
 import org.saltframework.core.handlers.StatusCode;
 import org.saltframework.core.handlers.SuccessHandler;
 import org.saltframework.validation.ValidationResult;
@@ -47,8 +47,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 @ContextConfiguration(
 		classes = {
-				Bootstrap.class,
-				ValidationServletConfiguration.class
+				BootstrapBeanContext.class,
+				ServletApplicationContext.class
 		}
 )
 public class FormControllerTest {
@@ -63,7 +63,7 @@ public class FormControllerTest {
 	private Validator validator;
 
 	@Autowired
-	private MessageSourceAccessor messageSource;
+	private MessageSourceAccessor messageSourceAccessor;
 
 	@Before
 	public void setUp() {
@@ -85,11 +85,11 @@ public class FormControllerTest {
 
 		if (result.hasErrors()) {
 			SuccessHandler successHandler = new SuccessHandler(
-					messageSource.getMessage("org.saltframework.validation"),
+					messageSourceAccessor.getMessage("org.saltframework.validation"),
 					true, StatusCode.FormValidation,
 					new ValidationResult(
 							result,
-							new AppValidationMessage(messageSource)
+							new AppValidationMessage(messageSourceAccessor)
 					).getFieldErrors());
 
 			logger.debug("{}", successHandler);
@@ -116,11 +116,11 @@ public class FormControllerTest {
 
 		if (result.hasErrors()) {
 			SuccessHandler successHandler = new SuccessHandler(
-					messageSource.getMessage("org.saltframework.validation"),
+					messageSourceAccessor.getMessage("org.saltframework.validation"),
 					true, StatusCode.FormValidation,
 					new ValidationResult(
 							result,
-							new AppValidationMessage(messageSource)
+							new AppValidationMessage(messageSourceAccessor)
 					).getFieldErrors());
 
 			logger.debug("{}", successHandler);

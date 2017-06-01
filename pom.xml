@@ -22,6 +22,25 @@
 		<salt.version>1.0.0.RELEASE</salt.version>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.saltframework</groupId>
+				<artifactId>salt-core</artifactId>
+				<version>${salt.version}</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.saltframework</groupId>
+				<artifactId>salt-validation</artifactId>
+				<version>${salt.version}</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<repositories>
 		<repository>
 			<id>central</id>
@@ -184,7 +203,7 @@
 					<sourceEncoding>${encoding}</sourceEncoding>
 					<targetJdk>${java.version}</targetJdk>
 					<rulesets>
-						<ruleset>file:///${project.basedir}/pmd.xml</ruleset>
+						<ruleset>file:///${project.basedir}/../pmd.xml</ruleset>
 					</rulesets>
 				</configuration>
 			</plugin>

@@ -12,7 +12,6 @@
 	<artifactId>salt-core</artifactId>
 
 	<properties>
-		<saltCore.version>1.0.0.RELEASE</saltCore.version>
 		<spring.version>4.3.7.RELEASE</spring.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<jackson.version>2.8.7</jackson.version>

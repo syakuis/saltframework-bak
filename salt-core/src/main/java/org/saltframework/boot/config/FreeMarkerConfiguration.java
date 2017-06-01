@@ -1,4 +1,4 @@
-package org.saltframework.core.boot.config;
+package org.saltframework.boot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

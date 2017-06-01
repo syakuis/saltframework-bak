@@ -1,4 +1,4 @@
-package org.saltframework.core.boot.servlet;
+package org.saltframework.boot.servlet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -37,7 +37,23 @@ import java.nio.charset.StandardCharsets;
 				}
 		)
 )
-public class ServletConfiguration extends WebMvcConfigurerAdapter implements WebMvcConfigurer {
+public class ServletApplicationContext extends WebMvcConfigurerAdapter implements WebMvcConfigurer {
+	private Validator validator;
+
+	@Autowired
+	public void setValidator(Validator validator) {
+		this.validator = validator;
+	}
+
+	/**
+	 <mvc:annotation-driven validator="validator"/>
+	 * @return
+	 */
+	@Override
+	public Validator getValidator() {
+		return validator;
+	}
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		WebContentInterceptor wci = new WebContentInterceptor();
