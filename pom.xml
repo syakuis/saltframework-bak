@@ -5,13 +5,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.saltframework</groupId>
-	<artifactId>salt-framework</artifactId>
+	<artifactId>saltframework</artifactId>
 	<version>1.0.0.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<modules>
 		<module>salt-validation</module>
 		<module>salt-core</module>
+		<module>salt-security</module>
 	</modules>
 
 	<properties>
