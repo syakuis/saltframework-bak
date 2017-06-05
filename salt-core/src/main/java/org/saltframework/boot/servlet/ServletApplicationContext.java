@@ -1,5 +1,7 @@
 package org.saltframework.boot.servlet;
 
+import org.saltframework.boot.Salt;
+import org.saltframework.core.templates.FreemarkerSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
+import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -41,6 +45,18 @@ public class ServletApplicationContext extends WebMvcConfigurerAdapter implement
 	private Validator validator;
 
 	@Autowired
+	private Salt salt;
+
+	@Autowired
+	private FreeMarkerConfigurer freeMarkerConfigurer;
+
+	@PostConstruct
+	public void freeMarkerGlobalVariable() {
+		FreemarkerSupport freemarkerSupport = new FreemarkerSupport(freeMarkerConfigurer);
+		freemarkerSupport.variable("salt", salt);
+	}
+
+	@Autowired
 	public void setValidator(Validator validator) {
 		this.validator = validator;
 	}
@@ -52,6 +68,17 @@ public class ServletApplicationContext extends WebMvcConfigurerAdapter implement
 	@Override
 	public Validator getValidator() {
 		return validator;
+	}
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		String[] resourceHandlers = salt.getResourceHandlers();
+		String[] resourceLocations = salt.getResourceLocations();
+		int size = resourceHandlers.length;
+
+		for (int i = 0; i < size; i++) {
+			registry.addResourceHandler(resourceHandlers[i]).addResourceLocations(resourceLocations[i]).setCachePeriod(0);
+		}
 	}
 
 	@Override

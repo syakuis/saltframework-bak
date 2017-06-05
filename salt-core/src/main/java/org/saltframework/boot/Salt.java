@@ -29,7 +29,8 @@ public final class Salt {
 
 	private String rootAbsolutePath;
 
-	private String[] resourcesPath;
+	private String[] resourceHandlers;
+	private String[] resourceLocations;
 
 	private boolean viewResolverCache;
 
@@ -53,8 +54,10 @@ public final class Salt {
 		rootAbsolutePath = properties.getProperty("rootAbsolutePath");
 		properties.remove("rootAbsolutePath");
 
-		resourcesPath = StringUtils.delimitedListToStringArray(properties.getProperty("resourcesPath"), ",");
-		properties.remove("resourcesPath");
+		resourceHandlers = StringUtils.delimitedListToStringArray(properties.getProperty("resourceHandlers"), ",");
+		resourceLocations = StringUtils.delimitedListToStringArray(properties.getProperty("resourceLocations"), ",");
+		properties.remove("resourceHandlers");
+		properties.remove("resourceLocations");
 
 		viewResolverCache = Boolean.parseBoolean(properties.getProperty("viewResolverCache"));
 		properties.remove("viewResolverCache");
