@@ -1,0 +1,77 @@
+{
+  "name": "salt-react",
+  "version": "1.0.0",
+  "description": "saltframework with react",
+  "author": "Syaku (최석균) <http://syaku.tistory.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "config": {
+    "port": 8088,
+    "publicPath": "/",
+    "proxyHost": "http://localhost:8080",
+    "vendors": [
+      "react",
+      "react-dom",
+      "react-addons-update",
+      "qs",
+      "axios",
+      "nprogress"
+    ]
+  },
+  "scripts": {
+    "build:dev": "webpack --colors --progress -d",
+    "build:prod": "webpack --config webpack.deploy.config.js --colors --progress -p",
+    "serv:dev": "webpack-dev-server --hot --inline --colors --progress -d",
+    "serv:prod": "webpack-dev-server --hot --inline --colors --progress -p --compress",
+    "state:dev": "webpack --config webpack.state.config.js --colors --progress -d --profile --json > stats-dev.json",
+    "state:prod": "webpack --config webpack.state.config.js --colors --progress -p --profile --json > stats.json"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-dynamic-import-webpack": "^1.0.1",
+    "babel-plugin-lodash": "^3.2.11",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-3": "^6.22.0",
+    "css-loader": "^0.28.4",
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-import-resolver-webpack": "^0.8.1",
+    "eslint-loader": "^1.6.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.0.1",
+    "file-loader": "^0.11.2",
+    "style-loader": "^0.18.2",
+    "stylelint": "^7.9.0",
+    "stylelint-config-standard": "^16.0.0",
+    "stylelint-webpack-plugin": "^0.7.0",
+    "url-loader": "^0.5.8",
+    
+    "webpack-bundle-analyzer": "^2.3.0",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "webpack": "^2.2.1",
+    "html-webpack-plugin": "^2.28.0",
+    "extract-text-webpack-plugin": "^2.0.0",
+    "axios": "^0.16.2",
+    "babel-polyfill": "^6.23.0",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "nprogress": "^0.2.0",
+    "prop-types": "^15.5.10",
+    "qs": "^6.3.1",
+    "react": "15.5.4",
+    "react-addons-update": "^15.4.1",
+    "react-dom": "15.5.4"
+  }
+}
