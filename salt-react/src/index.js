@@ -1,13 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import LayoutContainer from 'CONTAINERS/layout';
+import MainContainer from 'CONTAINERS/main';
 
 class App {
-
   static main() {
     render(
-      <div>
-        리액트를 시작합니다.
-      </div>,
+      <Router>
+        <LayoutContainer>
+          <Route path="/" exact component={MainContainer} />
+        </LayoutContainer>
+      </Router>,
       document.getElementById('app'),
     );
   }

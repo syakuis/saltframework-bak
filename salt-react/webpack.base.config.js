@@ -88,11 +88,11 @@ module.exports = (env = {
         },
       ],
     },
-    // resolve: {
-    //   alias: {
-
-    //   }
-    // },
+    resolve: {
+      alias: {
+        CONTAINERS: path.resolve(__dirname, 'src/containers/'),
+      },
+    },
 
     devServer: {
       historyApiFallback: true,
