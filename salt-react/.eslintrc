@@ -3,12 +3,16 @@
   "extends": "airbnb",
   "env": { "browser": true },
   "settings": {
-    "import/resolver": "webpack"
+    "import/resolver": "webpack",
+    "import/parser": "babel-eslint"
+  },
+  "globals": {
+    "API_SERVER_PATH": true
   },
   "rules": {
     "react/jsx-filename-extension": [
       1,
-      { "extensions": [".js", ".jsx"] }
+      { "extensions": [".js"] }
     ]
   }
 }

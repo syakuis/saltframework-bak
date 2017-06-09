@@ -31,6 +31,9 @@ module.exports = (env = {
     },
 
     plugins: [
+      new webpack.DefinePlugin({
+        API_SERVER_PATH: JSON.stringify('/api'),
+      }),
       new webpack.optimize.CommonsChunkPlugin({
         names: ['commons', 'vendors'],
         minChunks: 2,
@@ -61,17 +64,12 @@ module.exports = (env = {
           }),
         },
         {
-          test: /\.(png|jpg|gif|bmp|jpeg|eot|svg|ttf|woff|woff2)$/i,
-          use: {
-            loader: 'url-loader',
-            options: {
-              limit: 10000, // 10kb
-            },
-          },
+          test: /\.(png|jpg|gif|bmp|jpeg)(\?\S*)?$/i,
+          use: `file-loader?name=[name]-[hash].[ext]&publicPath=${publicPath}&outputPath=images/`,
         },
         {
-          test: /\.(png|jpg|gif|bmp|jpeg|eot|svg|ttf|woff|woff2)$/i,
-          use: 'file-loader?name=[name]-[hash].[ext]&publicPath=./resources/&outputPath=resources/',
+          test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/i,
+          use: `file-loader?name=[name]-[hash].[ext]&publicPath=${publicPath}&outputPath=fonts/`,
         },
         {
           test: /\.js$/,
@@ -88,9 +86,12 @@ module.exports = (env = {
         },
       ],
     },
+
     resolve: {
       alias: {
-        CONTAINERS: path.resolve(__dirname, 'src/containers/'),
+        Layouts: path.resolve(__dirname, 'src/apps/layouts/'),
+        Modules: path.resolve(__dirname, 'src/apps/modules/'),
+        Utils: path.resolve(__dirname, 'src/apps/utils/'),
       },
     },
 

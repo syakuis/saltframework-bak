@@ -1,5 +1,3 @@
-const base = require('./webpack.base.config')
+const base = require('./webpack.base.config');
 
-module.exports = (env) => {
-  return base(env)
-}
+module.exports = env => base(env);

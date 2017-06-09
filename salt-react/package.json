@@ -54,7 +54,6 @@
     "stylelint-config-standard": "^16.0.0",
     "stylelint-webpack-plugin": "^0.7.0",
     "url-loader": "^0.5.8",
-    "webpack-bundle-analyzer": "^2.3.0",
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
@@ -72,6 +71,8 @@
     "react-addons-update": "^15.4.1",
     "react-dom": "15.5.4",
     "react-router-dom": "^4.1.1",
-    "webpack": "^2.2.1"
+    "shortid": "^2.2.8",
+    "webpack": "^2.2.1",
+    "webpack-bundle-analyzer": "^2.3.0"
   }
 }

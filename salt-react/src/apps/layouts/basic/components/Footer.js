@@ -4,8 +4,8 @@ const propTypes = { };
 const defaultProps = { };
 
 const Footer = () => (
-  <footer>
-    풋더...
+  <footer className="footer">
+    <p>&copy; 2016 Company, Inc.</p>
   </footer>
 );
 

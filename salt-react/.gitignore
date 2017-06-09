@@ -18,6 +18,8 @@ db
 
 *.iml
 .idea/
+.chrome/
+.vscode/
 
 *.pmd
 target/

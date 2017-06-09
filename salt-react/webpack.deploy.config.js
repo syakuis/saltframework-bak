@@ -1,7 +1,5 @@
-const base = require('./webpack.base.config')
+const base = require('./webpack.base.config');
 
-module.exports = (env) => {
-  return base({
-    publicPath: './'
-  })
-}
+module.exports = () => base({
+  publicPath: './',
+});

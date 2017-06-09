@@ -1,12 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const propTypes = { };
+import TopMenu from './TopMenu';
+
+const propTypes = {
+  menus: PropTypes.array.isRequired,
+};
 const defaultProps = { };
 
-const Header = () => (
-  <header>
-    헤더...
-  </header>
+const Header = props => (
+  <div className="header clearfix">
+    <TopMenu menus={props.menus} />
+    <h3 className="text-muted">Project name</h3>
+  </div>
 );
 
 Header.propTypes = propTypes;
