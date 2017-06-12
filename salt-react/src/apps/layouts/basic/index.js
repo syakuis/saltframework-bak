@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import update from 'react-addons-update';
 import shortid from 'shortid';
+import DynamicImport from 'Utils/dynamic-import';
 
 import * as Components from './components';
 
@@ -28,6 +29,7 @@ class Layout extends React.Component {
 
     this.addTab = this.addTab.bind(this);
     this.changeTab = this.changeTab.bind(this);
+    this.changeTabContent = this.changeTabContent.bind(this);
 
     this.state = {
       menus: [
@@ -81,11 +83,29 @@ class Layout extends React.Component {
     });
   }
 
+  changeTabContent(e, path) {
+    e.preventDefault();
+
+    const content = path === null ? '' : <DynamicImport path={path} />;
+
+    this.setState({
+      tabs: {
+        ...this.state.tabs,
+        [this.state.tabId]: {
+          ...this.state.tabs[this.state.tabId],
+          content,
+        },
+      },
+    });
+  }
+
   render() {
     return (
       <div>
         <div className="container">
           <Components.Header menus={this.state.menus} />
+          <a href="" onClick={e => this.changeTabContent(e, 'modules/login/index.js')}>good</a>
+          <a href="" onClick={e => this.changeTabContent(e, 'modules/main/index.js')}>good2</a>
           <ul className="nav nav-tabs">
             {
               Object.keys(this.state.tabs).map((id) => {
