@@ -14,7 +14,7 @@ const TopMenu = props => (
     <ul className="nav nav-pills pull-right">
       {
         props.menus.map(menu => (
-          <li key={shortid.generate()} role="presentation"><Link to={menu.url}>{menu.title}</Link></li>
+          <li key={shortid.generate()}><Link to={menu.url}>{menu.title}</Link></li>
         ))
       }
     </ul>
