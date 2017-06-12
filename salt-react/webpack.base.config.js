@@ -89,6 +89,7 @@ module.exports = (env = {
 
     resolve: {
       alias: {
+        Components: path.resolve(__dirname, 'src/apps/components/'),
         Layouts: path.resolve(__dirname, 'src/apps/layouts/'),
         Modules: path.resolve(__dirname, 'src/apps/modules/'),
         Utils: path.resolve(__dirname, 'src/apps/utils/'),
