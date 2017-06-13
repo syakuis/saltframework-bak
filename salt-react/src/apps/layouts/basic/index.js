@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TabContainer from 'Components/TabContainer';
+import Login from 'Modules/login';
 
 import * as Components from './components';
 
@@ -43,7 +44,7 @@ class Layout extends React.Component {
       <div>
         <div className="container">
           <Components.Header menus={this.state.menus} />
-          <a href="" onClick={e => this.change(e, 'modules/login/index.js')}>good</a>
+          <a href="" onClick={e => this.change(e, Login)}>good</a>
           <a href="" onClick={e => this.change(e, 'modules/main/index.js')}>good2</a>
           <a href="" onClick={e => this.change(e, 'modules/mypage/index.js')}>good2</a>
           <TabContainer target={this.state.target} />

@@ -1,3 +1,9 @@
+/**
+ * @date 2017-06-13 15:52:33
+ * @author Seok Kyun. Choi. 최석균 (Syaku)
+ * @site http://syaku.tistory.com
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
@@ -26,12 +32,14 @@ class TabContainer extends React.Component {
     this.addTab = this.addTab.bind(this);
     this.changeTab = this.changeTab.bind(this);
     this.changeTabContent = this.changeTabContent.bind(this);
+    this.closeTab = this.closeTab.bind(this);
 
     this.state = {
       tabs: {
         [this.props.tabDefault.id]: this.props.tabDefault,
       },
       tabId: this.props.tabDefault.id,
+      tabCount: 1,
     };
   }
 
@@ -39,13 +47,18 @@ class TabContainer extends React.Component {
     this.changeTabContent(nextProps.target);
   }
 
+  /**
+   * 탭을 추가한다.
+   * @param {*} e
+   */
   addTab(e) {
     e.preventDefault();
 
     const id = shortid.generate();
+    const tabCount = this.state.tabCount + 1;
     const tab = Object.assign({}, this.props.tabDefault, {
       id,
-      order: this.state.tabs.lenght + 1,
+      order: tabCount,
     });
 
     this.setState({
@@ -54,9 +67,30 @@ class TabContainer extends React.Component {
         [id]: tab,
       },
       tabId: id,
+      tabCount,
     });
   }
 
+  closeTab(e, id) {
+    e.preventDefault();
+    e.stopPropagation();
+    const tabs = Object.assign({}, this.state.tabs);
+    delete tabs[id];
+
+    let tabId = this.state.tabId;
+
+    if (tabId === id) {
+      tabId = Object.keys(tabs).pop();
+    }
+
+    this.setState({ tabId, tabs });
+  }
+
+  /**
+   * 선택된 탭을 활성화한다.
+   * @param {*} e
+   * @param {*} id
+   */
   changeTab(e, id) {
     e.preventDefault();
 
@@ -64,11 +98,14 @@ class TabContainer extends React.Component {
       tabId: id,
     });
   }
-
+  /**
+   * 선택된 탭에 컨텍스트를 변경한다.
+   * @param {*} target
+   */
   changeTabContent(target) {
     let content = '';
     if (target !== null) {
-      content = typeof target === 'string' ? <DynamicImport path={target} /> : <content />;
+      content = typeof target === 'string' ? <DynamicImport path={target} /> : target();
     }
 
     this.setState({
@@ -91,7 +128,10 @@ class TabContainer extends React.Component {
               const tab = this.state.tabs[id];
               return (
                 <li key={tab.id} className={tab.id === this.state.tabId ? 'active' : ''}>
-                  <a href="" onClick={e => this.changeTab(e, tab.id)}>{tab.title}</a>
+                  <a href="" onClick={e => this.changeTab(e, tab.id)}>
+                    {tab.title} ({tab.id})
+                    <i className="fa fa-close" role="button" tabIndex={0} onClick={e => this.closeTab(e, tab.id)} />
+                  </a>
                 </li>
               );
             })
