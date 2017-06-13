@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TabContainer from 'Components/TabContainer';
-import Login from 'Modules/login';
 
 import * as Components from './components';
 
@@ -15,45 +13,21 @@ const defaultProps = {
   children: '',
 };
 
-class Layout extends React.Component {
-  constructor(props) {
-    super(props);
+const menus = [
+  { title: '홈', url: '/' },
+  { title: '페이지', url: '/page' },
+  { title: '로그인', url: '/login' },
+];
 
-    this.change = this.change.bind(this);
-
-    this.state = {
-      menus: [
-        { title: '홈', url: '/' },
-        { title: '마이페이지', url: '/mypage' },
-        { title: '로그인', url: '/login' },
-      ],
-      target: null,
-    };
-  }
-
-  change(e, target) {
-    e.preventDefault();
-
-    this.setState({
-      target,
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="container">
-          <Components.Header menus={this.state.menus} />
-          <a href="" onClick={e => this.change(e, Login)}>good</a>
-          <a href="" onClick={e => this.change(e, 'modules/main/index.js')}>good2</a>
-          <a href="" onClick={e => this.change(e, 'modules/mypage/index.js')}>good2</a>
-          <TabContainer target={this.state.target} />
-          <Components.Footer />
-        </div>
-      </div>
-    );
-  }
-}
+const Layout = props => (
+  <div>
+    <div className="container">
+      <Components.Header menus={menus} />
+      {props.children}
+      <Components.Footer />
+    </div>
+  </div>
+);
 
 Layout.propTypes = propTypes;
 Layout.defaultProps = defaultProps;

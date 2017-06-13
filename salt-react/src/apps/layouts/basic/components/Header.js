@@ -11,7 +11,7 @@ const defaultProps = { };
 const Header = props => (
   <div className="header clearfix">
     <TopMenu menus={props.menus} />
-    <h3 className="text-muted">Project name</h3>
+    <h3 className="text-muted">Syaku</h3>
   </div>
 );
 

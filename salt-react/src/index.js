@@ -48,6 +48,10 @@ const routes = [
     path: '/login',
     component: 'login',
   },
+  {
+    path: '/page',
+    component: 'page',
+  },
 ];
 
 const RouteWithSubRoutes = (route) => {

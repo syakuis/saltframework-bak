@@ -13,6 +13,7 @@ import DynamicImport from './DynamicImport';
 const propTypes = {
   tabDefault: PropTypes.object,
   target: PropTypes.any,
+  title: PropTypes.string,
 };
 
 const defaultProps = {
@@ -23,6 +24,7 @@ const defaultProps = {
     content: '',
   },
   target: null,
+  title: 'default',
 };
 
 class TabContainer extends React.Component {
@@ -44,7 +46,8 @@ class TabContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.changeTabContent(nextProps.target);
+    const { target, title } = nextProps;
+    this.changeTabContent({ target, title });
   }
 
   /**
@@ -100,9 +103,10 @@ class TabContainer extends React.Component {
   }
   /**
    * 선택된 탭에 컨텍스트를 변경한다.
-   * @param {*} target
+   * @param {*} props
    */
-  changeTabContent(target) {
+  changeTabContent(props) {
+    const { target, title } = props;
     let content = '';
     if (target !== null) {
       content = typeof target === 'string' ? <DynamicImport path={target} /> : target();
@@ -114,6 +118,7 @@ class TabContainer extends React.Component {
         [this.state.tabId]: {
           ...this.state.tabs[this.state.tabId],
           content,
+          title,
         },
       },
     });
@@ -123,29 +128,34 @@ class TabContainer extends React.Component {
     return (
       <div>
         <ul className="nav nav-tabs">
+          <li>
+            <a href="" onClick={this.addTab}><i className="fa fa-plus" /></a>
+          </li>
           {
             Object.keys(this.state.tabs).map((id) => {
               const tab = this.state.tabs[id];
               return (
                 <li key={tab.id} className={tab.id === this.state.tabId ? 'active' : ''}>
                   <a href="" onClick={e => this.changeTab(e, tab.id)}>
-                    {tab.title} ({tab.id})
-                    <i className="fa fa-close" role="button" tabIndex={0} onClick={e => this.closeTab(e, tab.id)} />
+                    {tab.title}&nbsp;
+                    <i
+                      role="button"
+                      tabIndex={0}
+                      className="fa fa-close"
+                      onClick={e => this.closeTab(e, tab.id)}
+                    />
                   </a>
                 </li>
               );
             })
           }
-          <li>
-            <a href="" onClick={this.addTab}><i className="fa fa-plus" /></a>
-          </li>
         </ul>
         {
           Object.keys(this.state.tabs).map((id) => {
             const tab = this.state.tabs[id];
             const display = tab.id === this.state.tabId ? 'block' : 'none';
             return (
-              <div key={`content_${tab.id}`} className="container-fluid" style={{ minHeight: 500, display }}>
+              <div key={`content_${tab.id}`} style={{ minHeight: 500, display }}>
                 {tab.content}
               </div>
             );

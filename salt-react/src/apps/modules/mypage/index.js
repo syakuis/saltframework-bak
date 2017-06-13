@@ -4,15 +4,13 @@ const propTypes = { };
 const defaultProps = { };
 
 const Container = () => (
-  <div>
-    <iframe
-      title="good"
-      src="http://aintop.co.kr"
-      width="100%"
-      height="100%"
-      style={{ border: 'none', overflow: 'hidden' }}
-    />
-  </div>
+  <iframe
+    title="good"
+    src="http://daum.net"
+    width="100%"
+    height="100%"
+    style={{ border: 'none', overflow: 'hidden' }}
+  />
 );
 
 Container.propTypes = propTypes;

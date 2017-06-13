@@ -5,7 +5,7 @@ const defaultProps = { };
 
 const Container = () => (
   <div>
-    main...
+    메인화면입니다...
   </div>
 );
 
