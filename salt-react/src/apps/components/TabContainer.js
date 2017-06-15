@@ -109,7 +109,16 @@ class TabContainer extends React.Component {
     const { target, title } = props;
     let content = '';
     if (target !== null) {
-      content = typeof target === 'string' ? <DynamicImport path={target} /> : target();
+      switch (typeof target) {
+        case 'string':
+          content = <DynamicImport path={target} />;
+          break;
+        case 'function':
+          content = target();
+          break;
+        default:
+          content = target.default;
+      }
     }
 
     this.setState({

@@ -17,7 +17,6 @@ class Container extends React.Component {
 
   change(e, target, title) {
     e.preventDefault();
-
     this.setState({
       target,
       title,
