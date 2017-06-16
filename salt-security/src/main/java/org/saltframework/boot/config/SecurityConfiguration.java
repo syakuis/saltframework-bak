@@ -35,7 +35,7 @@ public class SecurityConfiguration {
 		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 			auth
 					.inMemoryAuthentication()
-					.withUser("user").password("1234").roles("USER");
+					.withUser("admin").password("1234").roles("USER");
 		}
 
 		@Override

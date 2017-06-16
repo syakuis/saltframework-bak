@@ -1,4 +1,5 @@
 import React from 'react';
+import Ajax from 'Utils/ajax';
 
 const propTypes = { };
 const defaultProps = { };
@@ -7,12 +8,34 @@ class Container extends React.Component {
   constructor(props) {
     super(props);
 
+    this.update = this.update.bind(this);
     this.login = this.login.bind(this);
+
+    this.state = {
+      userId: null,
+      password: null,
+    };
+  }
+
+  update(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ [name]: value });
   }
 
   login(e) {
-    e.prevnetDefault();
-    console.log(this.props);
+    e.preventDefault();
+
+    Ajax.instance()({
+      method: 'post',
+      url: '/member/signin',
+      params: this.state,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }).then((response) => {
+      console.log(response);
+    });
   }
 
   render() {
@@ -22,8 +45,8 @@ class Container extends React.Component {
           <div>
             <form className="form-login">
               <h2 className="form-login-heading"><i className="fa fa-sign-in" /> 로그인</h2>
-              <input type="text" className="form-control" placeholder="아이디" id="user_id" name="user_id" />
-              <input type="password" className="form-control" placeholder="비밀번호" id="password" name="password" />
+              <input type="text" className="form-control" placeholder="아이디" name="userId" onChange={this.update} defaultValue={this.state.userId} />
+              <input type="password" className="form-control" placeholder="비밀번호" name="password" onChange={this.update} defaultValue={this.state.password} />
               <div className="checkbox">
                 <label htmlFor="remember_user_id" className="checkbox-inline">
                   <input type="checkbox" id="remember_user_id" value="Y" /> 아이디 저장

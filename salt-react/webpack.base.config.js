@@ -102,7 +102,7 @@ module.exports = (env = {
       contentBase: 'dist',
       proxy: {
         '/api': {
-          target: proxyHost,
+          target: 'http://localhost:8080',
           pathRewrite: { '^/api': '' }, // proxy path 를 제거하도록 다시 쓴다.
           secure: false,
           prependPath: true, // target 에 경로를 사용한다.

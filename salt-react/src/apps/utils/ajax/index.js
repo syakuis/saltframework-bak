@@ -10,10 +10,10 @@ import 'nprogress/nprogress.css';
 
 const ajaxProps = {
   config: {
-    baseURL: '/api',
+    baseURL: API_SERVER_PATH,
     headers: {
       'X-Requested-With': 'XMLHttpRequest',
-      Authorization: `Basic ${btoa('admin:1234')}`,
+      // Authorization: `Basic ${btoa('admin:1234')}`,
     },
     paramsSerializer: params => Qs.stringify(params, { arrayFormat: 'repeat' }),
   },

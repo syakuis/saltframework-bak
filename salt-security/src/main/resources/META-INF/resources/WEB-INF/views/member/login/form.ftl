@@ -59,8 +59,6 @@
 			<!-- 로그인 -->
 			<div>
 				<form class="form-signin" role="form" method="post" action="${salt.getString("securityLoginProcessingUrl")}">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
 					<h2 class="form-signin-heading"><i class="fa fa-sign-in"></i> 로그인</h2>
 					<input type="text" class="form-control" placeholder="아이디" id="username" name="username">
 					<input type="password" class="form-control" placeholder="비밀번호" id="password" name="password">
@@ -85,5 +83,13 @@
 
 <script src="<@spring.url "/resources/bower_components/jquery/dist/jquery.min.js" />"></script>
 <script src="<@spring.url "/resources/bower_components/bootstrap/dist/js/bootstrap.min.js" />"></script>
+
+<script type="text/javascript">
+	var csrf = '<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />';
+
+	$('.form-signin').submit(function() {
+		$(this).append(csrf);
+	});
+</script>
 </body>
 </html>
