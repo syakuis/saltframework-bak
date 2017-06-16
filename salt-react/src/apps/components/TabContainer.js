@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
+import isClass from 'is-class';
 
 import DynamicImport from './DynamicImport';
 
@@ -107,6 +108,7 @@ class TabContainer extends React.Component {
    */
   changeTabContent(props) {
     const { target, title } = props;
+
     let content = '';
     if (target !== null) {
       switch (typeof target) {
@@ -114,10 +116,13 @@ class TabContainer extends React.Component {
           content = <DynamicImport path={target} />;
           break;
         case 'function':
-          content = target();
+          if (isClass(target)) {
+            content = React.createElement(target);
+          } else {
+            content = target();
+          }
           break;
         default:
-          content = target.default;
       }
     }
 
