@@ -8,6 +8,8 @@ class Container extends React.Component {
   constructor(props) {
     super(props);
 
+    this.ajax = Ajax.instance();
+
     this.update = this.update.bind(this);
     this.login = this.login.bind(this);
 
@@ -26,7 +28,7 @@ class Container extends React.Component {
   login(e) {
     e.preventDefault();
 
-    Ajax.instance()({
+    this.ajax({
       method: 'post',
       url: '/member/signin',
       params: this.state,
@@ -34,7 +36,7 @@ class Container extends React.Component {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     }).then((response) => {
-      console.log(response);
+      Ajax.responseErrorHandler(response);
     });
   }
 

@@ -2,6 +2,7 @@ package org.saltframework.core.handlers;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Controller 처리가 완료되었을 때 응답하기 위한 클래스
@@ -18,15 +19,19 @@ public class SuccessHandler<T> {
 	private final boolean error;
 	@Getter
 	private final StatusCode statusCode;
-	@Getter
+	@Getter @Setter
 	private T content;
+
+	public SuccessHandler() {
+		this(null, false, StatusCode.OK);
+	}
 
 	public SuccessHandler(String message) {
 		this(message, false, StatusCode.OK);
 	}
 
 	public SuccessHandler(boolean error) {
-		this("", error, StatusCode.OK);
+		this(null, error, StatusCode.OK);
 	}
 
 	public SuccessHandler(String message, boolean error) {

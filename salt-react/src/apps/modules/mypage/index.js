@@ -1,19 +1,29 @@
 import React from 'react';
+import Ajax from 'Utils/ajax';
 
-const propTypes = { };
-const defaultProps = { };
+class Container extends React.Component {
+  constructor(props) {
+    super(props);
 
-const Container = () => (
-  <iframe
-    title="good"
-    src="http://daum.net"
-    width="100%"
-    height="100%"
-    style={{ border: 'none', overflow: 'hidden' }}
-  />
-);
+    this.ajax = Ajax.instance();
+    this.state = {
+      on: false,
+    };
+  }
 
-Container.propTypes = propTypes;
-Container.defaultProps = defaultProps;
+  componentDidMount() {
+    this.ajax.get('/member/mypage').then((response) => {
+      Ajax.responseErrorHandler(response);
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        good
+      </div>
+    );
+  }
+}
 
 export default Container;

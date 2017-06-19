@@ -2,14 +2,23 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, browserHistory } from 'react-router-dom';
 import shortid from 'shortid';
+import Toast from 'modern-toastr';
 
 import ajax from 'Utils/ajax';
 import Layout from 'Layouts/basic';
 
+import 'modern-toastr/dist/modern-toastr.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 
 ajax.setDefaultConfig({ baseURL: API_SERVER_PATH });
+
+Toast.setDefaultConfig({
+  timeOut: 5000,
+  closeButton: true,
+  newestOnTop: true,
+  progressBar: true,
+});
 
 const asyncComponent = getComponent => (
   class AsyncComponent extends React.Component {

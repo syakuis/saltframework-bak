@@ -76,12 +76,12 @@ public final class Salt {
 	}
 
 	public String getString(String name, String defaultValue) {
-		if (defaultValue == null) {
+		String value = this.properties.getProperty(name);
+		if (!StringUtils.isEmpty(value)) {
 			return this.properties.getProperty(name);
 		}
 
-		String value = this.properties.getProperty(name);
-		return StringUtils.isEmpty(value) ? defaultValue : value;
+		return defaultValue;
 	}
 
 	public int getInt(String name) {
