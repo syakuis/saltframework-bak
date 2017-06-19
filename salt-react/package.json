@@ -64,6 +64,7 @@
     "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^2.28.0",
     "is-class": "0.0.4",
+    "js-cookie": "^2.1.4",
     "lodash": "^4.17.4",
     "modern-toastr": "^1.1.0",
     "nprogress": "^0.2.0",

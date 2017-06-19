@@ -14,9 +14,10 @@ class Container extends React.Component {
 
   componentDidMount() {
     this.ajax.get('/member/mypage').then((response) => {
-      const result = response.data;
-      if (result.code === 401) {
-        this.setState({ redirect: true });
+      const { code } = response;
+      console.log(code);
+      if (code !== 401) {
+        this.setState({ redirect: false });
       }
     });
   }

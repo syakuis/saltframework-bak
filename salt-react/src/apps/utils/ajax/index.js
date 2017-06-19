@@ -5,6 +5,7 @@
  */
 import axios from 'axios';
 import Qs from 'qs';
+import Cookie from 'js-cookie';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import Toast from 'modern-toastr';
@@ -29,6 +30,11 @@ class AjaxInstance {
 
     this.instance.interceptors.request.use((request) => {
       this.progress(true);
+      const hash = Cookie.get('Authorization');
+      if (hash !== null) {
+        request.headers.Authorization = hash;
+      }
+
       return request;
     }, (error) => {
       this.progress(true);

@@ -1,4 +1,6 @@
 import React from 'react';
+import Cookie from 'js-cookie';
+import Toastr from 'modern-toastr';
 import Ajax from 'Utils/ajax';
 
 const propTypes = { };
@@ -36,7 +38,13 @@ class Container extends React.Component {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     }).then((response) => {
-      Ajax.responseErrorHandler(response);
+      const { message, error } = response.data;
+      if (error) {
+        Toastr.error(message);
+      } else {
+        const hash = btoa(`${this.state.userId}:${this.state.password}`);
+        Cookie.set('Authorization', `Basic ${hash}`);
+      }
     });
   }
 

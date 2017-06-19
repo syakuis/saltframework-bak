@@ -20,7 +20,6 @@ class ResponseContent<T> {
 		response.setCharacterEncoding("UTF-8");
 
 		PrintWriter out = response.getWriter();
-
 		ObjectMapper objectMapper = new ObjectMapper();
 		out.print(objectMapper.writeValueAsString(success));
 		out.flush();
