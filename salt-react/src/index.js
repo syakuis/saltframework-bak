@@ -1,15 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, browserHistory } from 'react-router-dom';
-import shortid from 'shortid';
 import Toast from 'modern-toastr';
-
-import ajax from 'Utils/ajax';
-import Layout from 'Layouts/basic';
 
 import 'modern-toastr/dist/modern-toastr.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
+
+import ajax from 'Utils/ajax';
+import PrivateRoute from 'Components/PrivateRoute';
+
+import Menu from './demo/components/MenuComponent';
+import Login from './demo/components/LoginComponent';
+import Main from './demo/components/MainComponent';
+import Mypage from './demo/components/MypageComponent';
 
 ajax.setDefaultConfig({ baseURL: API_SERVER_PATH });
 
@@ -20,74 +24,19 @@ Toast.setDefaultConfig({
   progressBar: true,
 });
 
-const asyncComponent = getComponent => (
-  class AsyncComponent extends React.Component {
-    constructor() {
-      super();
-      this.state = { Component: AsyncComponent.Component };
-    }
-    componentWillMount() {
-      if (!this.state.Component) {
-        getComponent().then((Component) => {
-          AsyncComponent.Component = Component;
-          this.setState({ Component });
-        });
-      }
-    }
-    render() {
-      const { Component } = this.state;
-      if (Component) {
-        return <Component {...this.props} />;
-      }
-      return null;
-    }
-  }
-);
-
-const routes = [
-  {
-    path: '/',
-    component: 'main',
-  },
-  {
-    path: '/mypage',
-    component: 'mypage',
-  },
-  {
-    path: '/login',
-    component: 'login',
-  },
-  {
-    path: '/page',
-    component: 'page',
-  },
-];
-
-const RouteWithSubRoutes = (route) => {
-  const Component = asyncComponent(() =>
-    System.import(`./apps/modules/${route.component}/index.js`).then(module => module.default),
-  );
-
-  return (
-    <Route
-      exact
-      path={route.path}
-      render={props => (
-        <Component {...props} />
-      )}
-    />
-  );
-};
-
 class App {
   static main() {
     render(
       <Router history={browserHistory}>
-        <Layout>
-          {routes.map(route => (
-            <RouteWithSubRoutes key={shortid.generate()} {...route} />
-          ))}
-        </Layout>
+        <div>
+          <Menu />
+
+          <hr />
+
+          <Route exact path="/" component={Main} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/mypage" component={Mypage} />
+        </div>
       </Router>,
       document.getElementById('app'),
     );

@@ -7,12 +7,26 @@
 		</layout>
 	</appender>
 
+	<property name="LOGS_ABSOLUTE_PATH" value="/Users/syaku/develop/logs/saltframework" />
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS_ABSOLUTE_PATH}/mei.all.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOGS_ABSOLUTE_PATH}/mei.all.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy />
+		</rollingPolicy>
+	</appender>
+
 	<logger name="org.springframework" level="info" />
 	<logger name="org.springframework.security" level="debug" />
 	<logger name="org.saltframework" level="debug" />
 
 	<root level="debug">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
 	</root>
 
 </configuration>
