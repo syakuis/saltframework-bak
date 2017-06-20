@@ -73,6 +73,7 @@
     "react": "15.5.4",
     "react-addons-update": "^15.4.1",
     "react-dom": "15.5.4",
+    "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "shortid": "^2.2.8",
     "webpack": "^2.2.1",

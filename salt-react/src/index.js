@@ -30,7 +30,6 @@ class App {
       <Router history={browserHistory}>
         <div>
           <Menu />
-
           <hr />
 
           <Route exact path="/" component={Main} />

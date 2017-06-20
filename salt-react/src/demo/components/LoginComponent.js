@@ -1,10 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Cookie from 'js-cookie';
 import Toastr from 'modern-toastr';
 import Ajax from 'Utils/ajax';
 
-const propTypes = { };
-const defaultProps = { };
+const propTypes = {
+  history: PropTypes.object,
+};
+
+const defaultProps = {
+  history: null,
+};
 
 class LoginComponent extends React.Component {
   constructor(props) {
@@ -45,6 +51,7 @@ class LoginComponent extends React.Component {
         const hash = btoa(`${this.state.userId}:${this.state.password}`);
         Cookie.set('Authorization', `Basic ${hash}`);
         Cookie.set('isAuthentication', true);
+        this.props.history.push('/');
       }
     });
   }

@@ -1,19 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import Cookie from 'js-cookie';
 
-const propTypes = { };
-const defaultProps = { };
+const propTypes = {
+  history: PropTypes.object,
+};
+const defaultProps = {
+  history: null,
+};
 
 class LogoutComponent extends React.Component {
-  static logout(e) {
+  constructor(props) {
+    super(props);
+
+    this.logout = this.logout.bind(this);
+  }
+
+  logout(e) {
     e.preventDefault();
     Cookie.remove('isAuthentication');
     Cookie.remove('Authorization');
+    this.props.history.push('/');
   }
 
   render() {
     return (
-      <a href="" onClick={LogoutComponent.logout}>Logout</a>
+      <a href="" onClick={this.logout}>Logout</a>
     );
   }
 }
@@ -21,4 +34,4 @@ class LogoutComponent extends React.Component {
 LogoutComponent.propTypes = propTypes;
 LogoutComponent.defaultProps = defaultProps;
 
-export default LogoutComponent;
+export default withRouter(LogoutComponent);
