@@ -5,16 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const pkg = require('./package.json');
 
-module.exports = (env = {
-  port: pkg.config.port,
-  publicPath: pkg.config.publicPath,
-  proxyHost: pkg.config.proxyHost,
-  vendors: pkg.config.vendors,
-}) => {
-  const port = env.port === undefined || env.port === null || env.port === '' ? pkg.config.port : env.port;
-  const publicPath = env.publicPath === undefined || env.publicPath === null || env.publicPath === '' ? pkg.config.publicPath : env.publicPath;
-  const proxyHost = env.proxyHost === undefined || env.proxyHost === null || env.proxyHost === '' ? pkg.config.proxyHost : env.proxyHost;
-  const vendors = env.vendors === undefined || env.vendors === null || env.vendors === '' ? pkg.config.vendors : env.vendors;
+module.exports = (env) => {
+  const { port, publicPath, proxyHost, vendors } = Object.assign({}, pkg.config, env);
 
   return {
 
@@ -102,7 +94,7 @@ module.exports = (env = {
       contentBase: 'dist',
       proxy: {
         '/api': {
-          target: 'http://localhost:8080',
+          target: proxyHost,
           pathRewrite: { '^/api': '' }, // proxy path 를 제거하도록 다시 쓴다.
           secure: false,
           prependPath: true, // target 에 경로를 사용한다.

@@ -2,8 +2,6 @@ package org.saltframework.boot.config;
 
 import org.saltframework.boot.Salt;
 import org.saltframework.security.handlers.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,9 +22,7 @@ import org.springframework.util.StringUtils;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled=true)
 public class SecurityConfiguration {
-	private static final Logger logger = LoggerFactory.getLogger(SecurityConfiguration.class);
-
-	private final Salt salt;
+	private static Salt salt;
 
 	public SecurityConfiguration(@Autowired Salt salt) {
 		this.salt = salt;
@@ -34,9 +30,6 @@ public class SecurityConfiguration {
 
 	@Configuration
 	public static class SecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
-		@Autowired
-		private Salt salt;
-
 		@Autowired
 		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 			auth

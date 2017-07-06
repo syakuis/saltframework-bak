@@ -29,3 +29,5 @@ node_modules/
 
 src/contents/
 src/data.json
+
+yarn.*
