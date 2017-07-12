@@ -4,15 +4,15 @@
  * @site http://syaku.tistory.com
  */
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const base = require('./webpack.base.config')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const base = require('./webpack.base.config');
 
 module.exports = (env) => {
-  const config = base(env)
+  const config = base(env);
   return Object.assign(config, {
     plugins: [
       new BundleAnalyzerPlugin(),
-      ...config.plugins
-    ]
-  })
-}
+      ...config.plugins,
+    ],
+  });
+};

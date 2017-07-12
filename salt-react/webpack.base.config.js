@@ -1,3 +1,9 @@
+/**
+ * @date 2017-03-16 09:47:59
+ * @author Seok Kyun. Choi. 최석균 (Syaku)
+ * @site http://syaku.tistory.com
+ */
+
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -5,26 +11,20 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const pkg = require('./package.json');
 
-module.exports = (env = {
-  port: pkg.config.port,
-  publicPath: pkg.config.publicPath,
-  proxyHost: pkg.config.proxyHost,
-  vendors: pkg.config.vendors,
-}) => {
-  const port = env.port === undefined || env.port === null || env.port === '' ? pkg.config.port : env.port;
-  const publicPath = env.publicPath === undefined || env.publicPath === null || env.publicPath === '' ? pkg.config.publicPath : env.publicPath;
-  const proxyHost = env.proxyHost === undefined || env.proxyHost === null || env.proxyHost === '' ? pkg.config.proxyHost : env.proxyHost;
-  const vendors = env.vendors === undefined || env.vendors === null || env.vendors === '' ? pkg.config.vendors : env.vendors;
+module.exports = (env) => {
+  const { port, publicPath, proxyHost, vendors } = Object.assign({}, pkg.config, env);
+  const output = pkg.config.output;
+  const src = pkg.config.src;
 
   return {
 
     entry: {
-      main: './src/index.js',
+      main: `./${src}/index.js`,
       vendors,
     },
 
     output: {
-      path: path.join(__dirname, 'dist'),
+      path: path.join(__dirname, output),
       publicPath,
       filename: '[name].[hash].js',
       chunkFilename: 'chunks/[id].js',
@@ -42,7 +42,7 @@ module.exports = (env = {
       new HtmlWebpackPlugin({
         chunks: ['commons', 'vendors', 'main'],
         filename: 'index.html',
-        template: 'src/index.html',
+        template: `${src}/index.html`,
       }),
     ],
     module: {
@@ -51,7 +51,7 @@ module.exports = (env = {
           test: /\.js$/,
           enforce: 'pre',
           loader: 'eslint-loader',
-          include: path.join(__dirname, 'src'),
+          include: path.join(__dirname, src),
         },
         {
           test: /\.css$/,
@@ -61,7 +61,15 @@ module.exports = (env = {
           }),
         },
         {
-          test: /\.(png|jpg|gif|bmp|jpeg|eot|svg|ttf|woff|woff2)$/i,
+          test: /\.(png|jpg|gif)$/,
+          use: `file-loader?name=[name]-[hash].[ext]&publicPath=${publicPath}&outputPath=images/`,
+        },
+        {
+          test: /\.(eot|svg|ttf|woff|woff2)$/,
+          use: `file-loader?name=[name]-[hash].[ext]&publicPath=${publicPath}&outputPath=fonts/`,
+        },
+        {
+          test: /\.(png|jpg|gif|eot|svg|ttf|woff|woff2)$/i,
           use: {
             loader: 'url-loader',
             options: {
@@ -70,12 +78,8 @@ module.exports = (env = {
           },
         },
         {
-          test: /\.(png|jpg|gif|bmp|jpeg|eot|svg|ttf|woff|woff2)$/i,
-          use: 'file-loader?name=[name]-[hash].[ext]&publicPath=./resources/&outputPath=resources/',
-        },
-        {
           test: /\.js$/,
-          include: path.resolve(__dirname, 'src'),
+          include: path.resolve(__dirname, src),
           loader: 'babel-loader',
           query: {
             presets: ['react', 'es2015', 'stage-3'],
@@ -97,7 +101,7 @@ module.exports = (env = {
     devServer: {
       historyApiFallback: true,
       port,
-      contentBase: 'dist',
+      contentBase: output,
       proxy: {
         '/api': {
           target: proxyHost,

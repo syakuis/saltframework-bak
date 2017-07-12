@@ -12,6 +12,8 @@
     "port": 8088,
     "publicPath": "/",
     "proxyHost": "http://localhost:8080",
+    "output": "dist",
+    "src": "src",
     "vendors": [
       "react",
       "react-dom",
@@ -40,7 +42,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-3": "^6.22.0",
     "css-loader": "^0.28.4",
-    "eslint": "^3.16.1",
+    "eslint": "3.16.1",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-loader": "^1.6.3",
@@ -50,28 +52,31 @@
     "eslint-plugin-react": "^7.0.1",
     "file-loader": "^0.11.2",
     "style-loader": "^0.18.2",
-    "stylelint": "^7.9.0",
+    "stylelint": "7.12.0",
     "stylelint-config-standard": "^16.0.0",
     "stylelint-webpack-plugin": "^0.7.0",
     "url-loader": "^0.5.8",
-    
-    "webpack-bundle-analyzer": "^2.3.0",
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
-    "webpack": "^2.2.1",
-    "html-webpack-plugin": "^2.28.0",
-    "extract-text-webpack-plugin": "^2.0.0",
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "bootstrap": "^3.3.7",
+    "extract-text-webpack-plugin": "^2.0.0",
     "font-awesome": "^4.7.0",
+    "html-webpack-plugin": "^2.28.0",
+    "lodash": "^4.17.4",
     "nprogress": "^0.2.0",
     "prop-types": "^15.5.10",
     "qs": "^6.3.1",
-    "react": "15.5.4",
+    "react": "15.6.1",
     "react-addons-update": "^15.4.1",
-    "react-dom": "15.5.4"
+    "react-dom": "15.6.1",
+    "react-redux": "^5.0.3",
+    "react-router-dom": "4.1.1",
+    "redux": "3.6.0",
+    "store": "^2.0.4",
+    "webpack": "2.6.1",
+    "webpack-bundle-analyzer": "^2.3.0"
   }
 }
