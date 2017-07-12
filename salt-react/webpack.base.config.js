@@ -92,11 +92,17 @@ module.exports = (env) => {
         },
       ],
     },
-    // resolve: {
-    //   alias: {
 
-    //   }
-    // },
+    resolve: {
+      alias: {
+        _apps: path.resolve(__dirname, `${src}/apps`),
+        _utils: path.resolve(__dirname, `${src}/utils`),
+        _resources: path.resolve(__dirname, `${src}/resources`),
+        _layouts: path.resolve(__dirname, `${src}/layouts`),
+        _actions: path.resolve(__dirname, `${src}/actions`),
+        _reducers: path.resolve(__dirname, `${src}/reducers`),
+      },
+    },
 
     devServer: {
       historyApiFallback: true,
