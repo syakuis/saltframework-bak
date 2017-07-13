@@ -12,7 +12,7 @@ const Dashboard = () => (
   <Provider store={store}>
     <Layout>
       <div>
-        <Link to="/">1111</Link>
+        <Link to="/">11sadas11</Link>
         <Link to="/2">2222</Link>
         dashboard
       </div>

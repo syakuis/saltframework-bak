@@ -27,7 +27,7 @@ module.exports = (env) => {
       path: path.join(__dirname, output),
       publicPath,
       filename: '[name].[hash].js',
-      chunkFilename: 'chunks/[id].js',
+      chunkFilename: 'chunks/[name].[id].js',
     },
 
     plugins: [
@@ -68,15 +68,16 @@ module.exports = (env) => {
           test: /\.(eot|svg|ttf|woff|woff2)$/,
           use: `file-loader?name=[name]-[hash].[ext]&publicPath=${publicPath}&outputPath=fonts/`,
         },
-        {
-          test: /\.(png|jpg|gif|eot|svg|ttf|woff|woff2)$/i,
-          use: {
-            loader: 'url-loader',
-            options: {
-              limit: 10000, // 10kb
-            },
-          },
-        },
+        // 폰트를 제대로 불러오지 못함.
+        // {
+        //   test: /\.(png|jpg|gif|eot|svg|ttf|woff|woff2)$/i,
+        //   use: {
+        //     loader: 'url-loader',
+        //     options: {
+        //       limit: 10000, // 10kb
+        //     },
+        //   },
+        // },
         {
           test: /\.js$/,
           include: path.resolve(__dirname, src),
@@ -101,6 +102,8 @@ module.exports = (env) => {
         _layouts: path.resolve(__dirname, `${src}/layouts`),
         _actions: path.resolve(__dirname, `${src}/actions`),
         _reducers: path.resolve(__dirname, `${src}/reducers`),
+        _components: path.resolve(__dirname, `${src}/components`),
+        _containers: path.resolve(__dirname, `${src}/containers`),
       },
     },
 

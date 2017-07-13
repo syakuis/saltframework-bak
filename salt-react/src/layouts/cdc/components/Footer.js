@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Footer = () => (
+const propTypes = {
+  logoImage: PropTypes.string.isRequired,
+};
+
+const Footer = props => (
   <footer className="container">
     <div className="row">
       <div className="col-xs-8">
         <div className="row">
-          <div className="col-xs-2"><img src="./images/footer_logo.png" alt="" /></div>
+          <div className="col-xs-2"><img src={props.logoImage} alt="" /></div>
           <div className="col-xs-10 text-center">
             <address>
               32263 충청남도 홍성군 홍북면 상하천로58 충청남도개발공사 Tel. 041-630-7800 | Fax.041-630-7897
@@ -28,5 +33,7 @@ const Footer = () => (
     </div>
   </footer>
 );
+
+Footer.propTypes = propTypes;
 
 export default Footer;

@@ -1,18 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Header = () => (
+const propTypes = {
+  logoImage: PropTypes.string.isRequired,
+};
+
+const Header = props => (
   <header>
     <div className="container">
       <div className="row header">
         <div className="col-xs-3 text-center margin-top50">
-          <a href="page.main.html"><img alt="" src="./images/logo.gif" /></a>
+          <a href="page.main.html"><img alt="" src={props.logoImage} /></a>
         </div>
 
         <div className="col-xs-4 margin-top50">
           <div className="input-group">
             <input type="text" className="form-control form-search" placeholder="통합검색" />
 
-            <span className="input-group-btn"> <a href="search.html" button className="btn btn-default btn-search" type="button" target="blank"> <i className="fa fa-search" /> </a> </span>
+            <span className="input-group-btn"> <a href="search.html" className="btn btn-default btn-search" target="blank"> <i className="fa fa-search" /> </a> </span>
           </div>
 
         </div>
@@ -30,19 +35,17 @@ const Header = () => (
             <span className="log-font"><i className="fa fa-user" style={{ color: '#3386c6' }} /> <b>유아인</b>&nbsp;|&nbsp;2015.11.23&nbsp;10:00:00</span>
           </div>
 
-          <div className="clearfix" style={{ paddingBottom: 20 }}>
-            <ul className="icon-none">
-              <li>
-                <i className="fa fa-home fa-pull-left hvr-wobble-horizontal" data-tooltip-text="홈페이지" />
-              </li>
-              <li>
-                <i className="fa fa-cog fa-pull-left hvr-wobble-horizontal" data-tooltip-text="개인설정" />
-              </li>
-              <li>
-                <a href="member.login.html"><i className="fa fa-sign-in fa-pull-left hvr-wobble-horizontal" data-tooltip-text="로그아웃" /></a>
-              </li>
-            </ul>
-          </div>
+          <ul className="margin-top20 icon-none">
+            <li>
+              <i className="fa fa-home fa-pull-left hvr-wobble-horizontal" data-tooltip-text="홈페이지" />
+            </li>
+            <li>
+              <i className="fa fa-cog fa-pull-left hvr-wobble-horizontal" data-tooltip-text="개인설정" />
+            </li>
+            <li>
+              <a href="member.login.html"><i className="fa fa-sign-in fa-pull-left hvr-wobble-horizontal" data-tooltip-text="로그아웃" /></a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -123,5 +126,7 @@ const Header = () => (
     </nav>
   </header>
 );
+
+Header.propTypes = propTypes;
 
 export default Header;

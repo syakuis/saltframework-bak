@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import 'hover.css/css/hover.css';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 import './style.css';
+
+import headerLogoImage from './images/logo.gif';
+import footerLogoImage from './images/footer_logo.png';
 
 const propTypes = {
   children: PropTypes.node,
@@ -28,9 +32,9 @@ class Layout extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header logoImage={headerLogoImage} />
         <div id="container" className="container">{this.props.children}</div>
-        <Footer />
+        <Footer logoImage={footerLogoImage} />
       </div>
     );
   }

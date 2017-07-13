@@ -20,7 +20,9 @@ const asyncComponent = getComponent => (
       if (Component) {
         return <Component {...this.props} />;
       }
-      return null;
+      return (
+        <div>로드중...</div>
+      );
     }
   }
 );
@@ -28,10 +30,8 @@ const asyncComponent = getComponent => (
 
 const RouteWithSubRoutes = (route) => {
   const Component = asyncComponent(() =>
-    System.import(`./apps/${route.component}/index.js`).then(module => module.default),
+    import(`_apps/${route.component}/index.js`).then(module => module.default),
   );
-
-  console.log(Component);
 
   return (
     <Route
