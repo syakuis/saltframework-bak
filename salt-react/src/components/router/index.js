@@ -33,11 +33,13 @@ const RouteWithSubRoutes = (route) => {
     import(`_apps/${route.component}/index.js`).then(module => module.default),
   );
 
+  const { exact, strict } = route;
+
   return (
     <Route
-      exact={route.exact}
-      strict={route.strict}
-      path={route.path}
+      exact={exact}
+      strict={strict}
+      path={route.url}
       render={props => (
         <Component {...props} />
       )}

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, browserHistory } from 'react-router-dom';
 import shortid from 'shortid';
 
@@ -12,37 +13,26 @@ import '_resources/css/non-responsive.css';
 import { RouteWithSubRoutes } from '_components/router';
 
 const propTypes = {
-  routes: PropTypes.array,
-};
-
-const defaultProps = {
-  routes: [
-    {
-      path: '/',
-      component: 'dashboard',
-      strict: true,
-      exact: true,
-    },
-    {
-      path: '/2',
-      component: 'dashboard2',
-      strict: false,
-      exact: false,
-    },
-  ],
+  menus: PropTypes.array.isRequired,
 };
 
 const MainContainer = props => (
   <Router history={browserHistory}>
     <div>
-      {props.routes.map(route => (
-        <RouteWithSubRoutes key={shortid.generate()} {...route} />
-      ))}
+      {props.menus.map((route) => {
+        if (route.component !== undefined) {
+          return <RouteWithSubRoutes key={shortid.generate()} {...route} />;
+        }
+        return '';
+      })}
     </div>
   </Router>
 );
 
-MainContainer.defaultProps = defaultProps;
 MainContainer.propTypes = propTypes;
 
-export default MainContainer;
+const store = state => ({
+  menus: state.view.menus.MENU0000000000000003,
+});
+
+export default connect(store, undefined)(MainContainer);
