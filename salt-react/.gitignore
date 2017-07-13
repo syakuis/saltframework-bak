@@ -8,6 +8,9 @@ RUNNING_PID
 *.log
 *.bak
 
+.vscode
+.chrome
+
 dist/
 node_modules/
 yarn*
