@@ -40,7 +40,7 @@ const RouteWithSubRoutes = (route) => {
     import(`_apps/${route.component}/index.js`).then(module => module.default),
   );
 
-  const { exact, strict, common } = route;
+  const { exact, strict } = route;
 
   return (
     <Route
@@ -48,7 +48,7 @@ const RouteWithSubRoutes = (route) => {
       strict={strict}
       path={route.url}
       render={props => (
-        <Component {...props} common={common} />
+        <Component {...props} />
       )}
     />
   );

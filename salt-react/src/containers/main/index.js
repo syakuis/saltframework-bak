@@ -1,4 +1,6 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import { BrowserRouter as Router, browserHistory } from 'react-router-dom';
 import shortid from 'shortid';
 
@@ -8,7 +10,11 @@ import 'font-awesome/css/font-awesome.css';
 import '_resources/css/common.css';
 import '_resources/css/non-responsive.css';
 
+import view from '_actions';
+import reducers from '_reducers';
 import { RouteWithSubRoutes } from '_components/router';
+
+const store = createStore(reducers);
 
 /**
  * 엔트리 포인트에서 사용되는 컨테이너
@@ -17,7 +23,6 @@ import { RouteWithSubRoutes } from '_components/router';
  * redux 는 apps 에서만 사용한다.
  * @param {*} props
  */
-
 class MainContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -78,7 +83,7 @@ class MainContainer extends React.Component {
             exact: false,
           },
           {
-            url: null,
+            url: '/3',
             menu_idx: 'MENU0000000000000003',
             menu_tree_idx: 'MENUT000000000000075',
             tree_id: 'j1_1',
@@ -98,6 +103,9 @@ class MainContainer extends React.Component {
             is_main_display: 0,
             is_tree_menu: 0,
             is_hidden: 0,
+            component: 'demo',
+            strict: false,
+            exact: false,
           },
           {
             url: null,
@@ -674,20 +682,32 @@ class MainContainer extends React.Component {
         ],
       },
     };
+
+    store.dispatch({
+      type: view.SET_VIEW_INITIALIZE,
+      data: this.state,
+    });
   }
 
   render() {
     return (
-      <Router history={browserHistory}>
-        <div>
-          {this.state.menus.MENU0000000000000003.map((route) => {
-            if (route.component !== undefined) {
-              return <RouteWithSubRoutes key={shortid.generate()} {...route} common={this.state} />;
-            }
-            return null;
-          })}
-        </div>
-      </Router>
+      <Provider store={store}>
+        <Router history={browserHistory}>
+          <div>
+            {this.state.menus.MENU0000000000000003.map((route) => {
+              if (route.component !== undefined) {
+                return (
+                  <RouteWithSubRoutes
+                    key={shortid.generate()}
+                    {...route}
+                  />
+                );
+              }
+              return null;
+            })}
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
