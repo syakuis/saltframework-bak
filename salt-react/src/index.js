@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import MainContainer from '_containers/main';
+import MainApp from '_apps/main';
 
 /**
  * 엔트리 포인트
@@ -9,7 +9,7 @@ import MainContainer from '_containers/main';
 class App {
   static main() {
     render(
-      <MainContainer />,
+      <MainApp />,
       document.getElementById('app'),
     );
   }

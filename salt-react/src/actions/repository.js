@@ -31,6 +31,10 @@ export const repoPropTypes = {
 };
 
 export const repoStateToProps = (id) => {
+  if (id === undefined || id === null || id === '') {
+    // throw new Error('should not be null, id');
+    return {};
+  }
   const mapStateToProps = (state) => {
     const repo = state.repo;
     if (repo && Object.prototype.hasOwnProperty.call(repo, id)) {

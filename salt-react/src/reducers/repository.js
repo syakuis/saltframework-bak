@@ -24,6 +24,11 @@ const arraySplice = (state, id, key, index) => {
 const repository = (state = {}, action) => {
   const { id, key, value } = action;
 
+  if (id === undefined || id === null || id === '') {
+    // throw new Error('should not be null, id');
+    return state;
+  }
+
   switch (action.type) {
     case actions.INIT_REPO:
       return Object.assign({}, state, { [id]: value });

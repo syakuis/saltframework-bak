@@ -74,6 +74,7 @@
     "hover.css": "^2.2.0",
     "html-webpack-plugin": "^2.28.0",
     "immutable": "^3.8.1",
+    "is-class": "^0.0.4",
     "lodash": "^4.17.4",
     "nprogress": "^0.2.0",
     "prop-types": "^15.5.10",
