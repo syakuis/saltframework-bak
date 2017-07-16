@@ -700,7 +700,6 @@ class MainApp extends React.Component {
                 return (
                   <RouteWithSubRoutes
                     key={pageId}
-                    pageId={pageId}
                     {...route}
                   />
                 );
