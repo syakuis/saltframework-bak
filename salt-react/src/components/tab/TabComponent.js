@@ -7,7 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-import isClass from 'is-class';
 
 import DynamicImport from '_components/import';
 
@@ -109,22 +108,7 @@ class TabComponent extends React.Component {
   changeTabContent(props) {
     const { target, title } = props;
 
-    let content = '';
-    if (target !== null) {
-      switch (typeof target) {
-        case 'string':
-          content = <DynamicImport path={target} />;
-          break;
-        case 'function':
-          if (isClass(target)) {
-            content = React.createElement(target);
-          } else {
-            content = target();
-          }
-          break;
-        default:
-      }
-    }
+    const content = <DynamicImport path={target} />;
 
     this.setState({
       tabs: {

@@ -29,11 +29,9 @@ class Layout extends React.Component {
 
     this.change = this.change.bind(this);
 
-    console.log(props.children);
-
     this.state = {
-      target: null,
-      title: null,
+      target: 'demo',
+      title: '메인',
     };
   }
 
@@ -55,10 +53,13 @@ class Layout extends React.Component {
               <div className="col-xs-3">
                 <ul className="nav nav-pills nav-stacked">
                   <li role="presentation">
-                    <a href="" onClick={e => this.change(e, 'demo', '메인')}>good</a>
+                    <a href="" onClick={e => this.change(e, 'demo', '데모')}>데모</a>
                   </li>
                   <li role="presentation">
-                    <a href="" onClick={e => this.change(e, 'dashboard', '마이페이지')}>good2</a>
+                    <a href="" onClick={e => this.change(e, 'dashboard', '대시보드')}>대시보드</a>
+                  </li>
+                  <li role="presentation">
+                    <a href="" onClick={e => this.change(e, 'dashboard2', '테스트')}>테스트</a>
                   </li>
                 </ul>
               </div>

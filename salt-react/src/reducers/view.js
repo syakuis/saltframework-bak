@@ -1,4 +1,4 @@
-import * as actions from '_actions/config';
+import * as actions from '_actions/view';
 
 const defaultState = {
   layoutHidden: false, // 레이아웃 숨김 여부
@@ -7,14 +7,14 @@ const defaultState = {
   menus: {},
 };
 
-const config = (state = defaultState, action) => {
+const view = (state = defaultState, action) => {
   switch (action.type) {
-    case actions.SET_CONFIG_INITIALIZE:
+    case actions.SET_VIEW_INITIALIZE:
       return Object.assign({}, state, action.data);
     default:
       return state;
   }
 };
 
-export default config;
+export default view;
 

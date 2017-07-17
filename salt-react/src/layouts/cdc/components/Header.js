@@ -25,7 +25,7 @@ const Header = (props) => {
       <div className="container">
         <div className="row header">
           <div className="col-xs-3 text-center margin-top50">
-            <a href="page.main.html"><img alt="" src={props.logoImage} /></a>
+            <a href="page.main.html">Syaku</a>
           </div>
 
           <div className="col-xs-4 margin-top50">

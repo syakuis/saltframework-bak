@@ -9,7 +9,7 @@ import 'font-awesome/css/font-awesome.css';
 
 import '_resources/css/common.css';
 import '_resources/css/non-responsive.css';
-
+import Layout from '_layouts/cdc';
 import view from '_actions';
 import reducers from '_reducers';
 import { RouteWithSubRoutes } from '_components/router';
@@ -693,20 +693,22 @@ class MainApp extends React.Component {
     return (
       <Provider store={store}>
         <Router history={browserHistory}>
-          <div>
-            {this.state.menus.MENU0000000000000003.map((route) => {
-              if (route.component !== undefined) {
-                const pageId = shortid.generate();
-                return (
-                  <RouteWithSubRoutes
-                    key={pageId}
-                    {...route}
-                  />
-                );
-              }
-              return null;
-            })}
-          </div>
+          <Layout>
+            <div>
+              {this.state.menus.MENU0000000000000003.map((route) => {
+                if (route.component !== undefined) {
+                  const pageId = shortid.generate();
+                  return (
+                    <RouteWithSubRoutes
+                      key={pageId}
+                      {...route}
+                    />
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </Layout>
         </Router>
       </Provider>
     );

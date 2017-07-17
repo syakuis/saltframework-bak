@@ -12,7 +12,7 @@ class DynamicImport extends React.Component {
     this.load = this.load.bind(this);
 
     this.state = {
-      loading: true,
+      Component: null,
     };
 
     this.load(props.path);
@@ -25,15 +25,14 @@ class DynamicImport extends React.Component {
   load(path) {
     import(`_apps/${path}/index.js`).then((module) => {
       this.Component = module.default;
-      this.setState({ loading: false });
+      this.setState({ Component: module.default });
     });
   }
 
   render() {
-    if (this.state.loading) return null;
-    return (
-      <this.Component />
-    );
+    const { Component } = this.state;
+    if (Component) return <Component {...this.props} />;
+    return null;
   }
 }
 
