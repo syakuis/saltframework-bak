@@ -1,7 +1,5 @@
-const base = require('./webpack.base.config')
+const base = require('./webpack.base.config');
 
-module.exports = (env) => {
-  return base({
-    publicPath: './'
-  })
-}
+module.exports = (env = {
+  proxyHost: 'http://portal.aintop.co.kr:8080',
+}) => (base(env));

@@ -29,6 +29,8 @@ class Layout extends React.Component {
 
     this.change = this.change.bind(this);
 
+    console.log(props.children);
+
     this.state = {
       target: null,
       title: null,
