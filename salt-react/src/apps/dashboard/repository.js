@@ -39,7 +39,7 @@ const defaultState = {
     whiteSpace: [0, 0, 0, 0],
     margin: [5, 5],
     containerPadding: [0, 0],
-    rowHeight: 150,
+    rowHeight: 20,
     cols: { lg: 12, md: 12, sm: 12, xs: 12, xxs: 2 },
     breakpoints: { lg: 480, md: 480, sm: 480, xs: 480, xxs: 0 },
   },

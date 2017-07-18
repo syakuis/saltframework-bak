@@ -63,14 +63,13 @@ class DashboardEditor extends React.Component {
     const { config, portlets, ...other } = this.state;
 
     const PortletComponents = Object.keys(portlets).map((key) => {
-      const { layout, component, config, ...portlet } = portlets[key];
+      const { layout, component, ...portlet } = portlets[key];
       return (
         <div key={layout.i} data-grid={layout}>
-          <component
-            className="pull-portlet portlet-editor"
+          <CreatePortletComponent
+            component={component}
             idx={layout.i}
             padding={layout.padding}
-            portletConfig={config}
             {...portlet}
           />
         </div>

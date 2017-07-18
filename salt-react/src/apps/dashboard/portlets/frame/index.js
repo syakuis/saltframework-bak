@@ -27,8 +27,8 @@ class Frame extends React.Component {
       },
       options: {
         padding: 0,
-        w: 12,
-        h: 10,
+        w: 4,
+        h: 5,
         x: 0,
         y: Infinity,
         static: false,
