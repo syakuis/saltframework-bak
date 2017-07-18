@@ -153,7 +153,7 @@ class TabComponent extends React.Component {
             const tab = this.state.tabs[id];
             const display = tab.id === this.state.tabId ? 'block' : 'none';
             return (
-              <div key={`content_${tab.id}`} style={{ minHeight: 500, display }}>
+              <div key={`content_${tab.id}`} style={{ marginTop: 10, minHeight: 500, display }}>
                 {tab.content}
               </div>
             );

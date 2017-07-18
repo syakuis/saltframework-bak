@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import MenuController from '_apps/menu/controllers/MenuController';
 
 const propTypes = {
-  logoImage: PropTypes.string.isRequired,
+  // logoImage: PropTypes.string.isRequired,
   menus: PropTypes.array.isRequired,
 };
 

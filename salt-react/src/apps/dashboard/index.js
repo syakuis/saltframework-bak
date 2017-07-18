@@ -1,9 +1,12 @@
 import React from 'react';
 
-import DashboardContainer from './containers/DashboardContainer';
+import DashboardEditor from './containers/DashboardEditor';
+
+import './css/style.css';
+import './css/dashboard.css';
 
 const Dashboard = () => (
-  <DashboardContainer />
+  <DashboardEditor />
 );
 
 export default Dashboard;

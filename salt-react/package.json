@@ -26,7 +26,8 @@
       "qs",
       "axios",
       "store",
-      "nprogress"
+      "nprogress",
+      "ckeditor"
     ]
   },
   "scripts": {
@@ -70,6 +71,7 @@
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "bootstrap": "^3.3.7",
+    "ckeditor": "4.7.1",
     "extract-text-webpack-plugin": "^2.0.0",
     "font-awesome": "^4.7.0",
     "hover.css": "^2.2.0",
@@ -85,6 +87,7 @@
     "react-addons-update": "^15.4.1",
     "react-dom": "15.6.1",
     "react-grid-layout": "^0.14.7",
+    "react-modal": "^2.2.2",
     "react-redux": "^5.0.3",
     "react-resizable": "^1.7.1",
     "react-router-dom": "4.1.1",

@@ -1,0 +1,349 @@
+@charset "UTF-8";
+
+.bs3-theme .header .page-header {
+	margin: 0 0 20px;
+	position: relative;
+	padding: 10px;
+	border-left: 2px solid rgb(71, 163, 218);
+	border-bottom: 1px solid #eee;
+	color: #0884c9;
+	font-weight: bolder;
+}
+
+.bs3-theme .header .page-header h1 {
+	font-size: 1.286em;
+	margin-bottom: 0;
+}
+
+.bs3-theme .header .alert {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 10px 0 0;
+}
+
+.bs3-theme .header .alert .alert-head {
+	font-weight: bold;
+}/* 추가 */
+
+.bs3-theme .header .alert .alert-p {
+	font-size: 0.8571428571428571em;
+	color: #666;
+}/* 추가 */
+
+.bs3-theme .header .alert-warning {
+	border-top: 2px double #faebcc;
+}
+
+.bs3-theme .header .alert-danger {
+	border-top: 2px double #ebccd1;
+}
+
+.bs3-theme .header .alert-success {
+	border-top: 2px double #cceff0;
+}
+
+.bs3-theme .header .alert-info {
+	color: #47a3da;
+	background-color: #e4f3fc;
+	border-top: 2px double #47a3da;
+}
+
+.bs3-theme .header .alert-info .alert-link {
+	color: #ae5da1;
+}
+
+.bs3-theme #fixed_button.shadow {
+	box-shadow: 5px 5px 10px gray;
+}
+
+/* bs3 pagination 버튼 및 버튼 스타일 추가. */
+.bs3-theme .pagination-btn {
+	background-color: #fff;
+	font-size: 0.8571428571428571em;
+}
+
+.bs3-theme .pagination-btn:focus,
+.bs3-theme .pagination-btn.focus {
+	color: #0884c9;
+	background-color: #fff;
+	border-bottom: 2px solid #0884c9;
+}
+
+.bs3-theme .pagination-btn:hover {
+	color: #0884c9;
+	background-color: #fff;
+	border-bottom: 2px solid #0884c9;
+}
+
+.bs3-theme .pagination-btn:active,
+.bs3-theme .pagination-btn.active,
+.bs3-theme .open > .dropdown-toggle.pagination-btn {
+	color: #0884c9;
+	background-color: #fff;
+	border-bottom: 2px solid #0884c9;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+.bs3-theme .pagination-btn:active:hover,
+.bs3-theme .pagination-btn.active:hover,
+.bs3-theme .open > .dropdown-toggle.pagination-btn:hover,
+.bs3-theme .pagination-btn:active:focus,
+.bs3-theme .pagination-btn.active:focus,
+.bs3-theme .open > .dropdown-toggle.pagination-btn:focus,
+.bs3-theme .pagination-btn:active.focus,
+.bs3-theme .pagination-btn.active.focus,
+.bs3-theme .open > .dropdown-toggle.pagination-btn.focus {
+	background-color: #fff;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+.bs3-theme .pagination-btn:active,
+.bs3-theme .pagination-btn.active,
+.bs3-theme .open > .dropdown-toggle.pagination-btn {
+	background-image: none;
+}
+
+.bs3-theme .pagination-btn.disabled:hover,
+.bs3-theme .pagination-btn[disabled]:hover,
+.bs3-theme fieldset[disabled] .pagination-btn:hover,
+.bs3-theme .pagination-btn.disabled:focus,
+.bs3-theme .pagination-btn[disabled]:focus,
+.bs3-theme fieldset[disabled] .pagination-btn:focus,
+.bs3-theme .pagination-btn.disabled.focus,
+.bs3-theme .pagination-btn[disabled].focus,
+.bs3-theme fieldset[disabled] .pagination-btn.focus {
+	background-color: #5bc0de;
+	border-color: #46b8da;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+.bs3-theme .pagination-group .input-group.location {
+	width: 150px; /* 추가 css */
+}
+
+.bs3-theme .pagination-group .input-group .input-group-addon {
+	background-color: #ccc;
+	border-top: 0 none;
+	color: #555;
+	border-left: 0 none;
+	font-size: 0.8571428571428571em !important;
+}
+
+/* 이동버튼 */
+.bs3-theme .pagination-move-btn {
+	background-color: #0884c9;
+	font-size: 0.8571428571428571em;
+	color: #fff;
+}
+
+.bs3-theme .pagination-move-btn:focus,
+.bs3-theme .pagination-move-btn.focus {
+	color: #0884c9;
+	background-color: #fff;
+	border-bottom: 2px solid #0884c9;
+}
+
+.bs3-theme .pagination-move-btn:hover {
+	color: #0884c9;
+	background-color: #fff;
+	border-bottom: 2px solid #0884c9;
+}
+
+.bs3-theme .pagination-move-btn:active,
+.bs3-theme .pagination-move-btn.active,
+.bs3-theme .open > .dropdown-toggle.pagination-move-btn {
+	color: #0884c9;
+	background-color: #fff;
+	border-bottom: 2px solid #0884c9;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+.bs3-theme .pagination-move-btn:active:hover,
+.bs3-theme .pagination-move-btn.active:hover,
+.bs3-theme .open > .dropdown-toggle.pagination-move-btn:hover,
+.bs3-theme .pagination-move-btn:active:focus,
+.bs3-theme .pagination-move-btn.active:focus,
+.bs3-theme .open > .dropdown-toggle.pagination-move-btn:focus,
+.bs3-theme .pagination-move-btn:active.focus,
+.bs3-theme .pagination-move-btn.active.focus,
+.bs3-theme .open > .dropdown-toggle.pagination-move-btn.focus {
+	background-color: #fff;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+.bs3-theme .pagination-move-btn:active,
+.bs3-theme .pagination-move-btn.active,
+.bs3-theme .open > .dropdown-toggle.pagination-move-btn {
+	background-image: none;
+}
+
+.bs3-theme .pagination-move-btn.disabled:hover,
+.bs3-theme .pagination-move-btn[disabled]:hover,
+.bs3-theme fieldset[disabled] .pagination-move-btn:hover,
+.bs3-theme .pagination-move-btn.disabled:focus,
+.bs3-theme .pagination-move-btn[disabled]:focus,
+.bs3-theme fieldset[disabled] .pagination-move-btn:focus,
+.bs3-theme .pagination-move-btn.disabled.focus,
+.bs3-theme .pagination-move-btn[disabled].focus,
+.bs3-theme fieldset[disabled] .pagination-move-btn.focus {
+	background-color: #5bc0de;
+	border-color: #46b8da;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+/* ------------------------------------- */
+
+.bs3-theme .text-bluegreen { color: #1bb4b9; }
+
+/* bluegreen label */
+
+.bs3-theme .label-bluegreen {
+	background-color: #1bb4b9;
+}
+
+.bs3-theme .label-bluegreen[href]:hover,
+.bs3-theme .label-danger[href]:focus {
+	background-color: #119ea3;
+}
+
+/* 커스텀 탭 succese class name 사용 */
+.bs3-theme .tab-success .nav-tabs {
+	border-bottom: 1px solid #5cb85c;
+}
+
+.bs3-theme .tab-success .nav-tabs > li {
+	float: left;
+	margin-bottom: -1px;
+}
+
+.bs3-theme .tab-success .nav-tabs > li > a {
+	margin-right: 2px;
+	line-height: 1.42857143;
+	border: 1px solid transparent;
+	border-radius: 4px 4px 0 0;
+	color: #666;
+}
+
+.bs3-theme .tab-success .nav-tabs > li > a:hover {
+	border-color: #5cb85c #eee #f7f7f7;
+}
+
+.bs3-theme .tab-success .nav-tabs > li.active > a,
+.bs3-theme .tab-success .nav-tabs > li.active > a:hover,
+.bs3-theme .tab-success .nav-tabs > li.active > a:focus {
+	color: #5cb85c;
+	cursor: default;
+	background-color: #f7f7f7;
+	border: 1px solid #5cb85c;
+	border-bottom-color: transparent;
+	font-weight: bold;
+	border-top: 2px solid #5cb85c;
+}
+
+.bs3-theme .tab-success .nav-tabs.nav-justified {
+	width: 100%;
+	border-bottom: 0;
+}
+
+.bs3-theme .tab-success .nav-tabs.nav-justified > li {
+	float: none;
+}
+
+.bs3-theme .tab-success .nav-tabs.nav-justified > li > a {
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+.bs3-theme .tab-success .nav-tabs.nav-justified > .dropdown .dropdown-menu {
+	top: auto;
+	left: auto;
+}
+
+.bs3-theme .tab-success .nav-tabs.nav-justified > li > a {
+	margin-right: 0;
+	border-radius: 4px;
+}
+
+.bs3-theme .tab-success .nav-tabs.nav-justified > .active > a,
+.bs3-theme .tab-success .nav-tabs.nav-justified > .active > a:hover,
+.bs3-theme .tab-success .nav-tabs.nav-justified > .active > a:focus {
+	border: 1px solid #ddd;
+}
+
+/* 커스텀 탭 danger class name 사용 */
+.bs3-theme .tab-danger .nav-tabs {
+	border-bottom: 1px solid #d67073;
+}
+
+.bs3-theme .tab-danger .nav-tabs > li {
+	float: left;
+	margin-bottom: -1px;
+}
+
+.bs3-theme .tab-danger .nav-tabs > li > a {
+	margin-right: 2px;
+	line-height: 1.42857143;
+	border: 1px solid transparent;
+	border-radius: 4px 4px 0 0;
+	color: #666;
+}
+
+.bs3-theme .tab-danger .nav-tabs > li > a:hover {
+	border-color: #d67073 #eee #f7f7f7;
+}
+
+.bs3-theme .tab-danger .nav-tabs > li.active > a,
+.bs3-theme .tab-danger .nav-tabs > li.active > a:hover,
+.bs3-theme .tab-danger .nav-tabs > li.active > a:focus {
+	color: #d67073;
+	cursor: default;
+	background-color: #f7f7f7;
+	border: 1px solid #d67073;
+	border-bottom-color: transparent;
+	font-weight: bold;
+	border-top: 2px solid #d67073;
+}
+
+.bs3-theme .tab-danger .nav-tabs.nav-justified {
+	width: 100%;
+	border-bottom: 0;
+}
+
+.bs3-theme .tab-danger .nav-tabs.nav-justified > li {
+	float: none;
+}
+
+.bs3-theme .tab-danger .nav-tabs.nav-justified > li > a {
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+.bs3-theme .tab-danger .nav-tabs.nav-justified > .dropdown .dropdown-menu {
+	top: auto;
+	left: auto;
+}
+
+.bs3-theme .tab-danger .nav-tabs.nav-justified > li > a {
+	margin-right: 0;
+	border-radius: 4px;
+}
+
+.bs3-theme .tab-danger .nav-tabs.nav-justified > .active > a,
+.bs3-theme .tab-danger .nav-tabs.nav-justified > .active > a:hover,
+.bs3-theme .tab-danger .nav-tabs.nav-justified > .active > a:focus {
+	border: 1px solid #ddd;
+}
+
+/* 데이터 폼 부분을 제작한 부분 입니다. */
+.bs3-theme .search .list-inline {
+	margin: 0;
+}
+
+/* 검색부분 줄바꿈 후 여백 생성 */
+.bs3-theme .search .form-inline .form-group {
+	float: left;
+	margin-left: 2px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}

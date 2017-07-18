@@ -9,6 +9,9 @@ import 'font-awesome/css/font-awesome.css';
 
 import '_resources/css/common.css';
 import '_resources/css/non-responsive.css';
+import '_resources/css/theme/cdc-bootstrap-theme.css';
+import '_resources/css/theme/cdc-bootstrap-theme-extend.css';
+
 import Layout from '_layouts/cdc';
 import view from '_actions';
 import reducers from '_reducers';

@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-const propTypes = {
-  logoImage: PropTypes.string.isRequired,
-};
+// const propTypes = {
+//   logoImage: PropTypes.string.isRequired,
+// };
 
 const Footer = () => (
   <footer className="container">
@@ -34,6 +34,6 @@ const Footer = () => (
   </footer>
 );
 
-Footer.propTypes = propTypes;
+// Footer.propTypes = propTypes;
 
 export default Footer;

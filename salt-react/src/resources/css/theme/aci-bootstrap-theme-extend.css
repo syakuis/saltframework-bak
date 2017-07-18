@@ -1,0 +1,245 @@
+@charset "UTF-8";
+
+.bs3-theme .text-mint { color: #1bb4b9; }
+
+/**
+ * 헤더 타이틀
+ */
+
+/* sub-page-header */
+.bs3-theme .header .page-header {
+	margin: 0 0 2;
+	position: relative;
+	padding: 0;
+	font-weight: bolder;
+	border-left: 0;
+	border-bottom: 0;
+	color: #535353;
+}
+
+.bs3-theme .header .page-header h1 {
+	font-size: 18px;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.bs3-theme .header .page-header h1 small {
+	margin-left: 1 0;
+}
+
+.bs3-theme .header .alert {
+	padding: 15px;
+	margin-bottom: 2 0;
+	border: 1px solid transparent;
+	border-radius: 0;
+}
+
+.bs3-theme .header .alert .alert-head {
+	font-weight: bold;
+}/* 추가 */
+
+.bs3-theme .header .alert .alert-p {
+	font-size: 12px;
+	color: #666;
+}/* 추가 */
+
+.bs3-theme .header .alert-warning {
+	border-top: 2px double #faebcc;
+}
+
+.bs3-theme .header .alert-danger {
+	border-top: 2px double #ebccd1;
+}
+
+.bs3-theme .header .alert-success {
+	border-top: 2px double #cceff0;
+}
+
+.bs3-theme .header .alert-info {
+	color: #47a3da;
+	border-top: 2px solid #47a3da;
+	background-color: #e4f3fc;
+}
+
+.bs3-theme .header .alert-info .alert-link {
+	color: #ae5da1;
+}
+
+/* pagination에 사용 되는 버튼 및 폼 디자인을 커스텀한 내용입니다. */
+.bs3-theme .pagination-form {
+	height: 30px;
+}
+
+.bs3-theme .pagination-btn {
+	background-color: transparent;
+	font-size: 12px;
+}
+
+.bs3-theme .pagination-btn:focus,
+.bs3-theme .pagination-btn.focus {
+	color: #54acd2;
+	background-color: #fff;
+	border-bottom: 2px solid #54acd2;
+}
+
+.bs3-theme .pagination-btn:hover {
+	color: #54acd2;
+	background-color: #fff;
+	border-bottom: 2px solid #54acd2;
+}
+
+.bs3-theme .pagination-btn:active,
+.bs3-theme .pagination-btn.active,
+.bs3-theme .open > .dropdown-toggle.pagination-btn {
+	color: #54acd2;
+	background-color: transparent;
+	border-bottom: 2px solid #54acd2;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+.bs3-theme .pagination-btn:active:hover,
+.bs3-theme .pagination-btn.active:hover,
+.bs3-theme .open > .dropdown-toggle.pagination-btn:hover,
+.bs3-theme .pagination-btn:active:focus,
+.bs3-theme .pagination-btn.active:focus,
+.bs3-theme .open > .dropdown-toggle.pagination-btn:focus,
+.bs3-theme .pagination-btn:active.focus,
+.bs3-theme .pagination-btn.active.focus,
+.bs3-theme .open > .dropdown-toggle.pagination-btn.focus {
+	background-color: #fff;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+.bs3-theme .pagination-btn:active,
+.bs3-theme .pagination-btn.active,
+.bs3-theme .open > .dropdown-toggle.pagination-btn {
+	background-image: none;
+}
+
+.bs3-theme .pagination-btn.disabled:hover,
+.bs3-theme .pagination-btn[disabled]:hover,
+.bs3-theme fieldset[disabled] .pagination-btn:hover,
+.bs3-theme .pagination-btn.disabled:focus,
+.bs3-theme .pagination-btn[disabled]:focus,
+.bs3-theme fieldset[disabled] .pagination-btn:focus,
+.bs3-theme .pagination-btn.disabled.focus,
+.bs3-theme .pagination-btn[disabled].focus,
+.bs3-theme fieldset[disabled] .pagination-btn.focus {
+	background-color: #5bc0de;
+	border-color: #46b8da;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+.bs3-theme .pagination-group .input-group.location {
+	width: 150px; /* 추가 css */
+}
+
+.bs3-theme .pagination-group .input-group .input-group-addon {
+	background-color: #ccc;
+	border-top: 0 none;
+	color: #555;
+	border-left: 0 none;
+	font-size: 0.8571428571428571em !important;
+}
+
+.bs3-theme .pagination-move-btn {
+	background-color: #54acd2;
+	font-size: 12px;
+	color: #fff;
+}
+
+.bs3-theme .pagination-move-btn:focus,
+.bs3-theme .pagination-move-btn.focus {
+	color: #54acd2;
+	background-color: #fff;
+	border-bottom: 2px solid #54acd2;
+}
+
+.bs3-theme .pagination-move-btn:hover {
+	color: #54acd2;
+	background-color: #fff;
+	border-bottom: 2px solid #54acd2;
+}
+
+.bs3-theme .pagination-move-btn:active,
+.bs3-theme .pagination-move-btn.active,
+.bs3-theme .open > .dropdown-toggle.pagination-move-btn {
+	color: #54acd2;
+	background-color: #fff;
+	border-bottom: 2px solid #54acd2;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+.bs3-theme .pagination-move-btn:active:hover,
+.bs3-theme .pagination-move-btn.active:hover,
+.bs3-theme .open > .dropdown-toggle.pagination-move-btn:hover,
+.bs3-theme .pagination-move-btn:active:focus,
+.bs3-theme .pagination-move-btn.active:focus,
+.bs3-theme .open > .dropdown-toggle.pagination-move-btn:focus,
+.bs3-theme .pagination-move-btn:active.focus,
+.bs3-theme .pagination-move-btn.active.focus,
+.bs3-theme .open > .dropdown-toggle.pagination-move-btn.focus {
+	background-color: #fff;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+.bs3-theme .pagination-move-btn:active,
+.bs3-theme .pagination-move-btn.active,
+.bs3-theme .open > .dropdown-toggle.pagination-move-btn {
+	background-image: none;
+}
+
+.bs3-theme .pagination-move-btn.disabled:hover,
+.bs3-theme .pagination-move-btn[disabled]:hover,
+.bs3-theme fieldset[disabled] .pagination-move-btn:hover,
+.bs3-theme .pagination-move-btn.disabled:focus,
+.bs3-theme .pagination-move-btn[disabled]:focus,
+.bs3-theme fieldset[disabled] .pagination-move-btn:focus,
+.bs3-theme .pagination-move-btn.disabled.focus,
+.bs3-theme .pagination-move-btn[disabled].focus,
+.bs3-theme fieldset[disabled] .pagination-move-btn.focus {
+	background-color: #5bc0de;
+	border-color: #46b8da;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.125) inset;
+}
+
+/* 검색영역 버튼 스타일 */
+.bs3-theme .search .btn-default {
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+}
+
+.bs3-theme .search .form-inline .well .btn-default:focus,
+.bs3-theme .search .form-inline .well .btn-default.focus {
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #8c8c8c;
+}
+
+.bs3-theme .search .form-inline .well .btn-default:hover {
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+}
+
+.bs3-theme .search .form-inline .well .btn-default:active,
+.bs3-theme .search .form-inline .well .btn-default.active,
+.bs3-theme .search .open > .dropdown-toggle.btn-default {
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+}
+
+/* 데이터 폼 부분을 제작한 부분 입니다. */
+.bs3-theme .search .list-inline {
+	margin: 0;
+}
+
+/* 검색부분 줄바꿈 후 여백 생성 */
+.bs3-theme .search .form-inline .form-group {
+	float: left;
+	margin-left: 2px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
