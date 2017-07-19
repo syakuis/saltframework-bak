@@ -6,8 +6,6 @@ const propTypes = {
   margin: PropTypes.array.isRequired,
   containerPadding: PropTypes.array.isRequired,
   rowHeight: PropTypes.number.isRequired,
-  cols: PropTypes.object.isRequired,
-  breakpoints: PropTypes.object.isRequired,
   modalClose: PropTypes.func.isRequired,
   setLayoutConfig: PropTypes.func.isRequired,
 };
@@ -17,8 +15,6 @@ class LayoutForm extends React.Component {
     super(props);
 
     this.setWhiteSpace = this.setWhiteSpace.bind(this);
-    this.setBreakpoints = this.setBreakpoints.bind(this);
-    this.setCols = this.setCols.bind(this);
     this.setMargin = this.setMargin.bind(this);
     this.setContainerPadding = this.setContainerPadding.bind(this);
     this.setRowHeight = this.setRowHeight.bind(this);
@@ -30,20 +26,6 @@ class LayoutForm extends React.Component {
       margin: props.margin,
       containerPadding: props.containerPadding,
       rowHeight: props.rowHeight,
-      cols: {
-        lg: props.cols.lg,
-        md: props.cols.md,
-        sm: props.cols.sm,
-        xs: props.cols.xs,
-        xxs: props.cols.xxs,
-      },
-      breakpoints: {
-        lg: props.breakpoints.lg,
-        md: props.breakpoints.md,
-        sm: props.breakpoints.sm,
-        xs: props.breakpoints.xs,
-        xxs: props.breakpoints.xxs,
-      },
     };
   }
 
@@ -55,28 +37,6 @@ class LayoutForm extends React.Component {
     whiteSpace[index] = value;
 
     this.setState({ whiteSpace });
-  }
-
-  setCols(e, name) {
-    let value = parseInt(e.target.value, 0);
-    value = isNaN(value) ? 0 : value;
-    this.setState({
-      cols: {
-        ...this.state.cols,
-        [name]: value,
-      },
-    });
-  }
-
-  setBreakpoints(e, name) {
-    let value = parseInt(e.target.value, 0);
-    value = isNaN(value) ? 0 : value;
-    this.setState({
-      breakpoints: {
-        ...this.state.breakpoints,
-        [name]: value,
-      },
-    });
   }
 
   setMargin(e, index) {
@@ -219,111 +179,6 @@ class LayoutForm extends React.Component {
             onChange={this.setRowHeight}
             value={this.state.rowHeight}
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor>반응 선점 영역크기</label>
-          <div className="row">
-            <div className="col-xs-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="lg"
-                maxLength={2}
-                onChange={e => (this.setCols(e, 'lg'))}
-                value={this.state.cols.lg}
-              />
-            </div>
-            <div className="col-xs-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="md"
-                maxLength={2}
-                onChange={e => (this.setCols(e, 'md'))}
-                value={this.state.cols.md}
-              />
-            </div>
-            <div className="col-xs-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="sm"
-                maxLength={2}
-                onChange={e => (this.setCols(e, 'sm'))}
-                value={this.state.colsSm}
-              />
-            </div>
-            <div className="col-xs-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="xs"
-                maxLength={2}
-                onChange={e => (this.setCols(e, 'xs'))}
-                value={this.state.cols.xs}
-              />
-            </div>
-            <div className="col-xs-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="xxs"
-                maxLength={2}
-                onChange={e => (this.setCols(e, 'xxs'))}
-                value={this.state.cols.xxs}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor>반응 사이즈 설정</label>
-          <div className="row">
-            <div className="col-xs-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="lg"
-                onChange={e => (this.setBreakpoints(e, 'lg'))}
-                value={this.state.breakpoints.lg}
-              />
-            </div>
-            <div className="col-xs-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="md"
-                onChange={e => (this.setBreakpoints(e, 'md'))}
-                value={this.state.breakpoints.md}
-              />
-            </div>
-            <div className="col-xs-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="sm"
-                onChange={e => (this.setBreakpoints(e, 'sm'))}
-                value={this.state.breakpoints.sm}
-              />
-            </div>
-            <div className="col-xs-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="xs"
-                onChange={e => (this.setBreakpoints(e, 'xs'))}
-                value={this.state.breakpoints.xs}
-              />
-            </div>
-            <div className="col-xs-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="xxs"
-                onChange={e => (this.setBreakpoints(e, 'xxs'))}
-                value={this.state.breakpoints.xxs}
-              />
-            </div>
-          </div>
         </div>
 
         <div className="text-center">

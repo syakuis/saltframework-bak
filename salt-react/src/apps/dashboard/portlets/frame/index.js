@@ -8,7 +8,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
+import ContextMenu from '../../components/ContextMenu';
+
 const propTypes = {
+  isShowContextMenu: PropTypes.bool.isRequired,
   idx: PropTypes.string.isRequired,
   portletConfig: PropTypes.object.isRequired,
   // updatePortletConfig: PropTypes.func.isRequired,
@@ -89,11 +92,16 @@ class Frame extends React.Component {
   render() {
     return (
       <div className="pull-portlet">
+        <ContextMenu idx={this.props.idx} isShowContextMenu={this.props.isShowContextMenu}>
+          <button type="button" className="btn btn-default" onClick={this.onModalClose}>
+            <i className="fa fa-cog" aria-hidden="true" />
+          </button>
+        </ContextMenu>
         <iframe
           title="portalFrame"
           src={this.state.result.src}
-          width={this.state.result.width === 0 ? '100%' : this.state.result.width}
-          height={this.state.result.height === 0 ? '100%' : this.state.result.height}
+          width={this.state.result.width !== 0 ? this.state.result.width : '100%'}
+          height={this.state.result.height !== 0 ? this.state.result.height : '100%'}
           style={{ border: 'none', overflow: 'hidden' }}
         />
 

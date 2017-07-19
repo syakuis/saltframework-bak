@@ -30,6 +30,9 @@ const repoProps = {
     isDraggable: true, // isView 에 의해 제어된다.
     isResizable: true, // isView 에 의해 제어된다.
     useCSSTransforms: true,
+    cols: { lg: 12, md: 12, sm: 12, xs: 12, xxs: 2 },
+    // cols: 12,
+    breakpoints: { lg: 480, md: 480, sm: 480, xs: 480, xxs: 0 },
   },
   portlets,
 };

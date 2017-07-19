@@ -11,9 +11,16 @@ const propTypes = {
 class CreatePortletComponent extends React.Component {
   constructor(props) {
     super(props);
+
+    this.showContextMenu = this.showContextMenu.bind(this);
+
     this.state = {
-      isContextMenuShow: false,
+      isShowContextMenu: false,
     };
+  }
+
+  showContextMenu(show) {
+    this.setState({ isShowContextMenu: show });
   }
 
   render() {
@@ -28,11 +35,14 @@ class CreatePortletComponent extends React.Component {
       <div
         className="pull-portlet portlet-editor"
         style={{ padding }}
+        onMouseOver={() => this.showContextMenu(true)}
+        onMouseOut={() => this.showContextMenu(false)}
       >
         <CreateComponent
           className="pull-portlet"
           idx={this.props.idx}
           portletConfig={this.props.config}
+          isShowContextMenu={this.state.isShowContextMenu}
         />
       </div>
     );
