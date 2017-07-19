@@ -1,7 +1,7 @@
 import shortid from 'shortid';
 import * as portlets from './portlets';
 
-const defaultLayout = {
+const repoLayout = {
   padding: 0,
   w: 2,
   h: 12,
@@ -14,14 +14,14 @@ const defaultLayout = {
   i: null,
 };
 
-const defaultPortlet = {
-  layout: defaultLayout,
+const repoPortlet = {
+  layout: repoLayout,
   componentName: null,
   component: null,
   config: {},
 };
 
-const defaultProps = {
+const repoProps = {
   config: {
     className: 'layout',
     autoSize: true,
@@ -34,7 +34,7 @@ const defaultProps = {
   portlets,
 };
 
-const defaultState = {
+const repoState = {
   config: {
     whiteSpace: [0, 0, 0, 0],
     margin: [5, 5],
@@ -51,7 +51,7 @@ const defaultState = {
 const createPortlet = (componentName) => {
   const portlet = portlets[componentName];
   const { options, portletConfig } = portlet.getDefault();
-  return Object.assign({}, defaultPortlet, {
+  return Object.assign({}, repoPortlet, {
     layout: {
       ...options,
       i: shortid.generate(),
@@ -61,5 +61,5 @@ const createPortlet = (componentName) => {
     config: portletConfig,
   });
 };
-export { defaultState, defaultProps, defaultLayout, defaultPortlet };
+export { repoState, repoProps, repoLayout, repoPortlet };
 export { createPortlet };

@@ -104,6 +104,7 @@ module.exports = (env) => {
         _reducers: path.resolve(__dirname, `${src}/reducers`),
         _components: path.resolve(__dirname, `${src}/components`),
         _containers: path.resolve(__dirname, `${src}/containers`),
+        _index: path.resolve(__dirname, `${src}/index`),
       },
     },
 

@@ -26,7 +26,7 @@ const store = createStore(reducers);
  * redux 는 apps 에서만 사용한다.
  * @param {*} props
  */
-class MainApp extends React.Component {
+class MainIndex extends React.Component {
   constructor(props) {
     super(props);
 
@@ -697,20 +697,18 @@ class MainApp extends React.Component {
       <Provider store={store}>
         <Router history={browserHistory}>
           <Layout>
-            <div>
-              {this.state.menus.MENU0000000000000003.map((route) => {
-                if (route.component !== undefined) {
-                  const pageId = shortid.generate();
-                  return (
-                    <RouteWithSubRoutes
-                      key={pageId}
-                      {...route}
-                    />
-                  );
-                }
-                return null;
-              })}
-            </div>
+            {this.state.menus.MENU0000000000000003.map((route) => {
+              if (route.component !== undefined) {
+                const pageId = shortid.generate();
+                return (
+                  <RouteWithSubRoutes
+                    key={pageId}
+                    {...route}
+                  />
+                );
+              }
+              return null;
+            })}
           </Layout>
         </Router>
       </Provider>
@@ -718,4 +716,4 @@ class MainApp extends React.Component {
   }
 }
 
-export default MainApp;
+export default MainIndex;

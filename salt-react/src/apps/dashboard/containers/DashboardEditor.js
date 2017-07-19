@@ -1,23 +1,23 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { WidthProvider, Responsive } from 'react-grid-layout';
 import Modal from 'react-modal';
 
-import 'react-grid-layout/css/styles.css';
-import 'react-resizable/css/styles.css';
-
-import { defaultState, defaultProps, createPortlet } from '../repository';
+import { repoState, repoProps, createPortlet } from '../repository';
 
 import Navbar from '../components/Navbar';
 import LayoutForm from '../components/LayoutForm';
-import CreatePortletComponent from '../components/CreatePortletComponent';
+import GridLayout from '../components/GridLayout';
 
-const ReactGridLayout = WidthProvider(Responsive);
+const defaultProps = {
+  config: {},
+  layout: [],
+  layouts: {},
+  portlets: {},
+  ...repoState,
+};
 
 class DashboardEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.showLayoutForm = this.showLayoutForm.bind(this);
 
     this.layoutChange = this.layoutChange.bind(this);
@@ -25,7 +25,7 @@ class DashboardEditor extends React.Component {
     this.addPortlet = this.addPortlet.bind(this);
 
     this.state = {
-      ...defaultState,
+      ...props,
       isShowLayoutForm: false,
     };
   }
@@ -60,27 +60,12 @@ class DashboardEditor extends React.Component {
   }
 
   render() {
-    const { config, portlets, ...other } = this.state;
-
-    const PortletComponents = Object.keys(portlets).map((key) => {
-      const { layout, component, ...portlet } = portlets[key];
-      return (
-        <div key={layout.i} data-grid={layout}>
-          <CreatePortletComponent
-            component={component}
-            idx={layout.i}
-            padding={layout.padding}
-            {...portlet}
-          />
-        </div>
-      );
-    });
-
+    const { config, portlets, layout, layouts } = this.state;
     return (
       <div className="bs3-theme dashboard">
         <Navbar
-          portlets={defaultProps.portlets}
-          config={this.state.config}
+          portlets={repoProps.portlets}
+          config={config}
           showLayoutForm={this.showLayoutForm}
           addPortlet={this.addPortlet}
         />
@@ -91,22 +76,24 @@ class DashboardEditor extends React.Component {
           shouldCloseOnOverlayClick
         >
           <LayoutForm
-            {...this.state.config}
+            {...config}
             modalClose={this.showLayoutForm}
             setLayoutConfig={this.setLayoutConfig}
           />
         </Modal>
-        <ReactGridLayout
-          onLayoutChange={this.layoutChange}
-          {...defaultProps.config}
-          {...config}
-          {...other}
-        >
-          {PortletComponents}
-        </ReactGridLayout>
+        <GridLayout
+          {...repoProps.config}
+          config={config}
+          layout={layout}
+          layouts={layouts}
+          portlets={portlets}
+          layoutChange={this.layoutChange}
+        />
       </div>
     );
   }
 }
+
+DashboardEditor.defaultProps = defaultProps;
 
 export default DashboardEditor;

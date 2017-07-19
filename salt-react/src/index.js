@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import MainApp from '_apps/main';
+import Index from '_index/main';
 
 import Modal from 'react-modal';
 
@@ -41,7 +41,7 @@ Modal.defaultStyles = {
 class App {
   static main() {
     render(
-      <MainApp />,
+      <Index />,
       document.getElementById('app'),
     );
   }
