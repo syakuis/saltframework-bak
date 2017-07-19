@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
 
-import { setDemoCount } from '_actions/demo';
+import { repoPropTypes, repoStateToProps, repoDispatchToProps } from '_actions/repository';
+
+import DemoService from './services';
+
+const propTypes = {
+  ...repoPropTypes,
+};
 
 const defaultProps = {
   todo: '',
@@ -18,10 +23,16 @@ class Demo extends Component {
     this.add = this.add.bind(this);
     this.del = this.del.bind(this);
 
+    this.demoService = new DemoService(this.props);
+
     this.state = {
       todo: '',
       todos: [],
     };
+  }
+
+  componentWillMount() {
+    this.demoService.create();
   }
 
   input(e) {
@@ -29,32 +40,24 @@ class Demo extends Component {
   }
 
   add() {
-    this.props.setDemoCount(1);
-    this.setState({
-      todo: '',
-      todos: [
-        ...this.state.todos,
-        this.state.todo,
-      ],
-    });
+    this.demoService.add(this.state.todo);
+    this.setState({ todo: '' });
   }
 
   del(index) {
-    const todos = Object.assign([], this.state.todos);
-    todos.splice(index, 0);
+    this.demoService.del(index);
   }
 
   render() {
     return (
       <div>
-        {this.props.count}
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" onChange={this.input} value={this.state.todo} />
           <button className="btn btn-default" type="button" onClick={this.add}>저장</button>
         </div>
         <ul className="list-group">
-          {this.state.todos.map((todo, index) => (
+          {this.demoService.todos(this.props).map((todo, index) => (
             <li className="list-group-item" key={shortid.generate()}>
               <i className="fa fa-close" role="button" tabIndex={0} onClick={() => this.del(index)} />
               {todo}
@@ -67,13 +70,6 @@ class Demo extends Component {
 }
 
 Demo.defaultProps = defaultProps;
+Demo.propTypes = propTypes;
 
-const mapStateToProps = state => ({
-  count: state.demo.count,
-});
-
-const mapDispatchToProps = dispatch => ({
-  setDemoCount: count => dispatch(setDemoCount(count)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Demo);
+export default connect(repoStateToProps, repoDispatchToProps)(Demo);
