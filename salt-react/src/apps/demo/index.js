@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
+import { connect } from 'react-redux';
+
+import { setDemoCount } from '_actions/demo';
 
 const defaultProps = {
   todo: '',
@@ -25,6 +29,7 @@ class Demo extends Component {
   }
 
   add() {
+    this.props.setDemoCount(1);
     this.setState({
       todo: '',
       todos: [
@@ -42,6 +47,7 @@ class Demo extends Component {
   render() {
     return (
       <div>
+        {this.props.count}
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" onChange={this.input} value={this.state.todo} />
@@ -62,4 +68,12 @@ class Demo extends Component {
 
 Demo.defaultProps = defaultProps;
 
-export default Demo;
+const mapStateToProps = state => ({
+  count: state.demo.count,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setDemoCount: count => dispatch(setDemoCount(count)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Demo);
