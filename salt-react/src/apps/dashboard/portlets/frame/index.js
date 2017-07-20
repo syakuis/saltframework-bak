@@ -9,12 +9,16 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
 import ContextMenu from '../../components/ContextMenu';
+import propTypesPortlet from '../propTypes';
 
 const propTypes = {
-  isShowContextMenu: PropTypes.bool.isRequired,
-  idx: PropTypes.string.isRequired,
-  portletConfig: PropTypes.object.isRequired,
-  // updatePortletConfig: PropTypes.func.isRequired,
+  ...propTypesPortlet,
+  src: PropTypes.string.isRequired,
+};
+
+const defaultState = {
+  isShowModal: false,
+  inputSrc: '',
 };
 
 class Frame extends React.Component {
@@ -23,12 +27,10 @@ class Frame extends React.Component {
     return {
       title: '아이프레임 포틀릿',
       image: null,
-      portletConfig: {
-        src: '',
-        width: 0, // 0 = 100%
-        height: 0, // 0 = 100%
-      },
       options: {
+        src: '',
+      },
+      config: {
         padding: 0,
         w: 4,
         h: 5,
@@ -45,14 +47,11 @@ class Frame extends React.Component {
     super(props);
 
     this.onModalClose = this.onModalClose.bind(this);
-    this.onSwitch = this.onSwitch.bind(this);
+    this.setInputSrc = this.setInputSrc.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
-      isShowModal: false,
-      ...this.props.portletConfig[this.props.idx],
-      result: {
-        ...this.props.portletConfig[this.props.idx],
-      },
+      src: this.props.src,
+      ...defaultState,
     };
   }
 
@@ -60,33 +59,25 @@ class Frame extends React.Component {
     this.setState({ isShowModal: !this.state.isShowModal });
   }
 
-  onSwitch(e) {
-    const value = e.target.value;
-    switch (e.target.name) {
-      case 'src':
-        this.setState(() => ({ src: value }));
-        break;
-      case 'width':
-        this.setState(() => ({ width: parseInt(value, 0) }));
-        break;
-      case 'height':
-        this.setState(() => ({ height: parseInt(value, 0) }));
-        break;
-      default:
-    }
-  }
-
   onSubmit() {
     this.setState({
-      result: this.state,
+      src: this.state.inputSrc,
     });
-    // this.props.updatePortletConfig({
-    //   idx: this.props.idx,
-    //   src: this.state.src,
-    //   width: this.state.width,
-    //   height: this.state.height,
-    // });
+
+    this.props.setPortletUpdate({
+      ...this.props.portlet,
+      options: {
+        src: this.state.src,
+      },
+    });
+
     this.onModalClose();
+  }
+
+  setInputSrc(e) {
+    this.setState({
+      inputSrc: e.target.value,
+    });
   }
 
   render() {
@@ -99,9 +90,9 @@ class Frame extends React.Component {
         </ContextMenu>
         <iframe
           title="portalFrame"
-          src={this.state.result.src}
-          width={this.state.result.width !== 0 ? this.state.result.width : '100%'}
-          height={this.state.result.height !== 0 ? this.state.result.height : '100%'}
+          src={this.state.src}
+          width="100%"
+          height="100%"
           style={{ border: 'none', overflow: 'hidden' }}
         />
 
@@ -111,52 +102,34 @@ class Frame extends React.Component {
           onRequestClose={this.onModalClose}
           shouldCloseOnOverlayClick
         >
-          <form>
-            <div>
-              <div className="form-group">
-                <label htmlFor="src">경로</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="src"
-                  name="src"
-                  onChange={this.onSwitch}
-                  defaultValue={this.state.src}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="width">넓이</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="width"
-                  name="width"
-                  onChange={this.onSwitch}
-                  defaultValue={this.state.width}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="height">높이</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="height"
-                  name="height"
-                  onChange={this.onSwitch}
-                  defaultValue={this.state.height}
-                />
-              </div>
+          <div className="page-header">
+            <h4>
+              <i
+                className="fa fa-times pull-right"
+                aria-hidden="true"
+                role="button"
+                onClick={this.onModalClose}
+              />
+              아이프레임 경로 설정
+            </h4>
+          </div>
+          <div className="form-group">
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="경로를 입력하세요."
+                id="inputSrc"
+                onChange={this.setInputSrc}
+                value={this.state.inputSrc}
+              />
+              <span className="input-group-btn">
+                <button className="btn btn-success" type="button" onClick={this.onSubmit}>
+                  <i className="fa fa-check" aria-hidden="true" /> 저장
+                </button>
+              </span>
             </div>
-
-            <button className="btn btn-default" type="button" onClick={this.onSubmit}>
-              <i className="fa fa-check" aria-hidden="true" /> 저장
-            </button>&nbsp;
-            <button
-              className="btn btn-default"
-              type="button"
-              onClick={this.onModalClose}
-            ><i className="fa fa-times" aria-hidden="true" /> 닫기</button>
-          </form>
+          </div>
         </Modal>
       </div>
     );

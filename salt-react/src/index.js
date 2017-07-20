@@ -24,6 +24,7 @@ Modal.defaultStyles = {
     outline: 'none',
     padding: '20px',
 
+    width: '50%',
     top: '50%',
     left: '50%',
     right: 'auto',

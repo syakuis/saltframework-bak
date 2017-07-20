@@ -15,7 +15,7 @@ import Navbar from '../components/Navbar';
 import LayoutForm from '../components/LayoutForm';
 import CreatePortletComponent from '../components/CreatePortletComponent';
 
-const GridLayout = WidthProvider(Responsive);
+const LayoutGrids = WidthProvider(Responsive);
 
 const defaultProps = {
   config: {},
@@ -36,6 +36,7 @@ class DashboardEditor extends React.Component {
     this.layoutGridItem = this.layoutGridItem.bind(this);
     this.layoutChange = this.layoutChange.bind(this);
     this.setLayoutConfig = this.setLayoutConfig.bind(this);
+    this.setPortletUpdate = this.setPortletUpdate.bind(this);
     this.addPortlet = this.addPortlet.bind(this);
 
     this.state = props;
@@ -45,13 +46,25 @@ class DashboardEditor extends React.Component {
     this.setState({ config });
   }
 
+  setPortletUpdate(portlet) {
+    console.log(portlet);
+    const portlets = Object.assign({}, {
+      ...this.state.portlets,
+      [portlet.config.i]: portlet,
+    });
+
+    this.setState({
+      portlets,
+    });
+  }
+
   addPortlet(componentName) {
     const portlet = createPortlet(componentName);
 
     this.setState({
       portlets: {
         ...this.state.portlets,
-        [portlet.layout.i]: portlet,
+        [portlet.config.i]: portlet,
       },
     });
   }
@@ -73,17 +86,19 @@ class DashboardEditor extends React.Component {
   layoutGridItem() {
     const { portlets } = this.state;
     return Object.keys(portlets).map((key) => {
-      const { layout: layoutConfig, component, ...portlet } = portlets[key];
+      const portlet = portlets[key];
+      const { config, component } = portlet;
       return (
         <div
-          key={layoutConfig.i}
-          data-grid={layoutConfig}
+          key={config.i}
+          data-grid={config}
         >
           <CreatePortletComponent
             component={component}
-            idx={layoutConfig.i}
-            padding={layoutConfig.padding}
-            {...portlet}
+            idx={config.i}
+            padding={config.padding}
+            setPortletUpdate={this.setPortletUpdate}
+            portlet={portlet}
           />
         </div>
       );
@@ -113,14 +128,14 @@ class DashboardEditor extends React.Component {
           />
         </Modal>
 
-        <GridLayout
+        <LayoutGrids
           onLayoutChange={this.layoutChange}
           {...config}
           layout={layout}
           layouts={layouts}
         >
           {this.layoutGridItem()}
-        </GridLayout>
+        </LayoutGrids>
       </div>
     );
   }

@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
+  setPortletUpdate: PropTypes.func.isRequired,
+  portlet: PropTypes.object.isRequired,
   component: PropTypes.func.isRequired,
   idx: PropTypes.string.isRequired, // layout: i = idx
   padding: PropTypes.number.isRequired,
-  config: PropTypes.object.isRequired,
 };
 
 class CreatePortletComponent extends React.Component {
@@ -40,9 +41,11 @@ class CreatePortletComponent extends React.Component {
       >
         <CreateComponent
           className="pull-portlet"
+          {...this.props.portlet.options}
+          portlet={this.props.portlet}
           idx={this.props.idx}
-          portletConfig={this.props.config}
           isShowContextMenu={this.state.isShowContextMenu}
+          setPortletUpdate={this.props.setPortletUpdate}
         />
       </div>
     );

@@ -15,10 +15,10 @@ const repoLayout = {
 };
 
 const repoPortlet = {
-  layout: repoLayout,
+  config: repoLayout,
   componentName: null,
   component: null,
-  config: {},
+  options: {},
 };
 
 const repoProps = {
@@ -53,15 +53,16 @@ const repoState = {
 
 const createPortlet = (componentName) => {
   const portlet = portlets[componentName];
-  const { options, portletConfig } = portlet.getDefault();
+  // config = react-grid-layout , options = portlet value
+  const { config, options } = portlet.getDefault();
   return Object.assign({}, repoPortlet, {
-    layout: {
-      ...options,
+    config: {
+      ...config,
       i: shortid.generate(),
     },
     componentName,
     component: portlet,
-    config: portletConfig,
+    options,
   });
 };
 export { repoState, repoProps, repoLayout, repoPortlet };
