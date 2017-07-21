@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactModal from 'react-modal';
+import PortletForm from './PortletForm';
 
 const propTypes = {
   children: PropTypes.node,
@@ -7,6 +9,7 @@ const propTypes = {
   idx: PropTypes.string.isRequired,
   copyPortlet: PropTypes.func.isRequired,
   deletePortlet: PropTypes.func.isRequired,
+  setPortletConfig: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -57,6 +60,14 @@ class ContextMenu extends React.Component {
             </button>
           </li>
         </ul>
+        <ReactModal
+          contentLabel={this.props.idx}
+          isOpen={this.state.modalOpen}
+          onRequestClose={this.onModalClose}
+          shouldCloseOnOverlayClick
+        >
+          <PortletForm setPortletConfig={this.props.idx} onModalClose={this.onModalClose} />
+        </ReactModal>
       </div>
     );
   }

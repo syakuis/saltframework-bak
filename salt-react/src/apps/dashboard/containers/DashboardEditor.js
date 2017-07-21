@@ -38,6 +38,7 @@ class DashboardEditor extends React.Component {
     this.setLayoutConfig = this.setLayoutConfig.bind(this);
 
     this.setPortletOptions = this.setPortletOptions.bind(this);
+    this.setPortletConfig = this.setPortletConfig.bind(this);
     this.addPortlet = this.addPortlet.bind(this);
     this.copyPortlet = this.copyPortlet.bind(this);
     this.deletePortlet = this.deletePortlet.bind(this);
@@ -47,6 +48,17 @@ class DashboardEditor extends React.Component {
 
   setLayoutConfig(config) {
     this.setState({ config });
+  }
+
+  setPortletConfig(config) {
+    const portlet = Object.assign({}, this.state.portlets[config.i], {
+      config,
+    });
+
+    this.setState({
+      ...this.state.portlets,
+      portlet,
+    });
   }
 
   /**
@@ -152,6 +164,7 @@ class DashboardEditor extends React.Component {
             idx={config.i}
             padding={config.padding}
             portlet={portlet}
+            setPortletConfig={this.setPortletConfig}
             setPortletOptions={this.setPortletOptions}
             copyPortlet={this.copyPortlet}
             deletePortlet={this.deletePortlet}

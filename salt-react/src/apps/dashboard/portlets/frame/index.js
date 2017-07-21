@@ -88,6 +88,7 @@ class Frame extends React.Component {
           idx={this.props.idx}
           copyPortlet={this.props.copyPortlet}
           deletePortlet={this.props.deletePortlet}
+          setPortletConfig={this.props.setPortletConfig}
           isShowContextMenu={this.props.isShowContextMenu}
         >
           <button type="button" className="btn btn-default" onClick={this.onModalClose}>

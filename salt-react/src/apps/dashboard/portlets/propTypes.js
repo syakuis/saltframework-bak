@@ -9,6 +9,7 @@ const propTypesPortlet = {
   idx: PropTypes.string.isRequired,
   // 변경된 포틀릿 정보 업데이트
   setPortletOptions: PropTypes.func.isRequired,
+  setPortletConfig: PropTypes.func.isRequired,
   copyPortlet: PropTypes.func.isRequired,
   deletePortlet: PropTypes.func.isRequired,
 };

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   deletePortlet: PropTypes.func.isRequired,
+  setPortletConfig: PropTypes.func.isRequired,
   setPortletOptions: PropTypes.func.isRequired,
   copyPortlet: PropTypes.func.isRequired,
   portlet: PropTypes.object.isRequired,
@@ -47,6 +48,7 @@ class CreatePortletComponent extends React.Component {
           portlet={this.props.portlet}
           idx={this.props.idx}
           isShowContextMenu={this.state.isShowContextMenu}
+          setPortletConfig={this.props.setPortletConfig}
           setPortletOptions={this.props.setPortletOptions}
           copyPortlet={this.props.copyPortlet}
           deletePortlet={this.props.deletePortlet}
