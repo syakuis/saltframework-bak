@@ -9,7 +9,7 @@ import 'react-resizable/css/styles.css';
 
 import { setViewInitialize } from '_actions/view';
 
-import { repoState, repoProps, createPortlet } from '../repository';
+import { repoState, repoProps, copyLayoutItem, createPortlet, copyPortlet } from '../repository';
 
 import Navbar from '../components/Navbar';
 import LayoutForm from '../components/LayoutForm';
@@ -36,8 +36,11 @@ class DashboardEditor extends React.Component {
     this.layoutGridItem = this.layoutGridItem.bind(this);
     this.layoutChange = this.layoutChange.bind(this);
     this.setLayoutConfig = this.setLayoutConfig.bind(this);
-    this.setPortletUpdate = this.setPortletUpdate.bind(this);
+
+    this.setPortletOptions = this.setPortletOptions.bind(this);
     this.addPortlet = this.addPortlet.bind(this);
+    this.copyPortlet = this.copyPortlet.bind(this);
+    this.deletePortlet = this.deletePortlet.bind(this);
 
     this.state = props;
   }
@@ -46,8 +49,11 @@ class DashboardEditor extends React.Component {
     this.setState({ config });
   }
 
-  setPortletUpdate(portlet) {
-    console.log(portlet);
+  /**
+   * react-grid-layout 에 추가된 포틀릿의 오션을 제어한다.
+   * @param {*} portlet
+   */
+  setPortletOptions(portlet) {
     const portlets = Object.assign({}, {
       ...this.state.portlets,
       [portlet.config.i]: portlet,
@@ -58,6 +64,10 @@ class DashboardEditor extends React.Component {
     });
   }
 
+  /**
+   * react-grid-layout 포틀릿을 추가한다.
+   * @param {*} componentName
+   */
   addPortlet(componentName) {
     const portlet = createPortlet(componentName);
 
@@ -66,6 +76,50 @@ class DashboardEditor extends React.Component {
         ...this.state.portlets,
         [portlet.config.i]: portlet,
       },
+    });
+  }
+
+  /**
+   * react-grid-layout 포틀릿을 복사해서 추가한다.
+   * @param {*} idx
+   */
+  copyPortlet(idx) {
+    const portlet = copyPortlet(Object.assign({}, this.state.portlets[idx]));
+    const newIdx = portlet.config.i;
+
+    const layout = copyLayoutItem(this.state.layout, idx, newIdx);
+    const layoutsLg = copyLayoutItem(this.state.layouts.lg, idx, newIdx);
+    const layoutsMd = copyLayoutItem(this.state.layouts.md, idx, newIdx);
+    const layoutsSm = copyLayoutItem(this.state.layouts.sm, idx, newIdx);
+    const layoutsXs = copyLayoutItem(this.state.layouts.xs, idx, newIdx);
+    const layoutsXxs = copyLayoutItem(this.state.layouts.xxs, idx, newIdx);
+
+    this.setState({
+      portlets: {
+        ...this.state.portlets,
+        [newIdx]: portlet,
+      },
+      layout,
+      layouts: {
+        lg: layoutsLg,
+        md: layoutsMd,
+        sm: layoutsSm,
+        xs: layoutsXs,
+        xxs: layoutsXxs,
+      },
+    });
+  }
+
+  /**
+   * react-grid-layout 포틀릿을 삭제한다.
+   * @param {*} idx
+   */
+  deletePortlet(idx) {
+    const portlets = Object.assign({}, this.state.portlets);
+    delete portlets[idx];
+
+    this.setState({
+      portlets,
     });
   }
 
@@ -97,8 +151,10 @@ class DashboardEditor extends React.Component {
             component={component}
             idx={config.i}
             padding={config.padding}
-            setPortletUpdate={this.setPortletUpdate}
             portlet={portlet}
+            setPortletOptions={this.setPortletOptions}
+            copyPortlet={this.copyPortlet}
+            deletePortlet={this.deletePortlet}
           />
         </div>
       );
@@ -130,6 +186,7 @@ class DashboardEditor extends React.Component {
 
         <LayoutGrids
           onLayoutChange={this.layoutChange}
+          {...repoProps.config}
           {...config}
           layout={layout}
           layouts={layouts}

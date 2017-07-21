@@ -36,6 +36,7 @@ class Frame extends React.Component {
         h: 5,
         x: 0,
         y: Infinity,
+        moved: false,
         static: false,
         isDraggable: true,
         isResizable: true,
@@ -64,10 +65,10 @@ class Frame extends React.Component {
       src: this.state.inputSrc,
     });
 
-    this.props.setPortletUpdate({
+    this.props.setPortletOptions({
       ...this.props.portlet,
       options: {
-        src: this.state.src,
+        src: this.state.inputSrc,
       },
     });
 
@@ -83,7 +84,12 @@ class Frame extends React.Component {
   render() {
     return (
       <div className="pull-portlet">
-        <ContextMenu idx={this.props.idx} isShowContextMenu={this.props.isShowContextMenu}>
+        <ContextMenu
+          idx={this.props.idx}
+          copyPortlet={this.props.copyPortlet}
+          deletePortlet={this.props.deletePortlet}
+          isShowContextMenu={this.props.isShowContextMenu}
+        >
           <button type="button" className="btn btn-default" onClick={this.onModalClose}>
             <i className="fa fa-cog" aria-hidden="true" />
           </button>

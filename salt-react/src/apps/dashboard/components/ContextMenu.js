@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   children: PropTypes.node,
-  isShowContextMenu: PropTypes.bool,
+  isShowContextMenu: PropTypes.bool.isRequired,
+  idx: PropTypes.string.isRequired,
+  copyPortlet: PropTypes.func.isRequired,
+  deletePortlet: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -32,6 +35,7 @@ class ContextMenu extends React.Component {
           <li>
             <button
               className="btn btn-default"
+              onClick={() => this.props.copyPortlet(this.props.idx)}
             >
               <span className="fa fa-clone" aria-hidden="true" />
             </button>
@@ -47,6 +51,7 @@ class ContextMenu extends React.Component {
           <li>
             <button
               className="btn btn-default"
+              onClick={() => this.props.deletePortlet(this.props.idx)}
             >
               <span className="fa fa-trash" aria-hidden="true" />
             </button>

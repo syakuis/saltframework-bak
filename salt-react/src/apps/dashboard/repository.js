@@ -15,9 +15,11 @@ const repoLayout = {
 };
 
 const repoPortlet = {
+  // react-grid-layou portlet config
   config: repoLayout,
   componentName: null,
   component: null,
+  // portlet options
   options: {},
 };
 
@@ -51,12 +53,26 @@ const repoState = {
   portlets: {},
 };
 
+const copyLayoutItem = (data, index, newIndex) => {
+  if (!Array.isArray(data)) return [];
+  const item = data.find(object => object.i === index);
+  if (item !== undefined) {
+    return data.concat(Object.assign({}, item, { i: newIndex }));
+  }
+  return data;
+};
+
+/**
+ * 새로운 포틀릿을 데이터를 생성한다.
+ * @param {*} componentName portlets/index.js 의 대상 컴포넌트 명
+ */
 const createPortlet = (componentName) => {
   const portlet = portlets[componentName];
   // config = react-grid-layout , options = portlet value
   const { config, options } = portlet.getDefault();
   return Object.assign({}, repoPortlet, {
     config: {
+      ...repoLayout,
       ...config,
       i: shortid.generate(),
     },
@@ -65,5 +81,17 @@ const createPortlet = (componentName) => {
     options,
   });
 };
+
+/**
+ * 등록된 포틀릿을 복사해서 새로 만든다.
+ * @param {*} portlet
+ */
+const copyPortlet = portlet => Object.assign({}, portlet, {
+  config: {
+    ...portlet.config,
+    i: shortid.generate(),
+  },
+});
+
 export { repoState, repoProps, repoLayout, repoPortlet };
-export { createPortlet };
+export { copyLayoutItem, createPortlet, copyPortlet };
