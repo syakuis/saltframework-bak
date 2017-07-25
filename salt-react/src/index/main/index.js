@@ -56,7 +56,7 @@ class MainIndex extends React.Component {
             is_main_display: 1,
             is_tree_menu: 0,
             is_hidden: 0,
-            component: 'dashboard',
+            component: 'dashboard/index.js',
             strict: true,
             exact: true,
           },
@@ -81,7 +81,7 @@ class MainIndex extends React.Component {
             is_main_display: 1,
             is_tree_menu: 0,
             is_hidden: 0,
-            component: 'dashboard2',
+            component: 'dashboard2/index.js',
             strict: false,
             exact: false,
           },
@@ -106,7 +106,7 @@ class MainIndex extends React.Component {
             is_main_display: 0,
             is_tree_menu: 0,
             is_hidden: 0,
-            component: 'demo',
+            component: 'demo/index.js',
             strict: false,
             exact: false,
           },
@@ -698,12 +698,16 @@ class MainIndex extends React.Component {
         <Router history={browserHistory}>
           <Layout>
             {this.state.menus.MENU0000000000000003.map((route) => {
-              if (route.component !== undefined) {
+              const { exact, strict, url, component } = route;
+              if (component !== undefined) {
                 const pageId = shortid.generate();
                 return (
                   <RouteWithSubRoutes
                     key={pageId}
-                    {...route}
+                    exact={exact}
+                    strict={strict}
+                    path={url}
+                    component={component}
                   />
                 );
               }

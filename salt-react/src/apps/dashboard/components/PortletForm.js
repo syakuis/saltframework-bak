@@ -39,17 +39,6 @@ class PortletForm extends React.Component {
   render() {
     return (
       <div>
-        <div className="page-header">
-          <h4>
-            <i
-              className="fa fa-times pull-right"
-              aria-hidden="true"
-              role="button"
-              onClick={this.props.onModalClose}
-            />
-            포틀릿 설정
-          </h4>
-        </div>
         <div className="form-group">
           <label htmlFor="padding">padding</label>
           <input

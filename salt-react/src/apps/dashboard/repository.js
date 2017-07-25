@@ -1,5 +1,4 @@
 import shortid from 'shortid';
-import * as portlets from './portlets';
 
 const repoLayout = {
   padding: 0,
@@ -36,7 +35,6 @@ const repoProps = {
     // cols: 12,
     breakpoints: { lg: 480, md: 480, sm: 480, xs: 480, xxs: 0 },
   },
-  portlets,
 };
 
 const repoState = {
@@ -66,8 +64,7 @@ const copyLayoutItem = (data, index, newIndex) => {
  * 새로운 포틀릿을 데이터를 생성한다.
  * @param {*} componentName portlets/index.js 의 대상 컴포넌트 명
  */
-const createPortlet = (componentName) => {
-  const portlet = portlets[componentName];
+const createPortlet = (portlet) => {
   // config = react-grid-layout , options = portlet value
   const { config, options } = portlet.getDefault();
   return Object.assign({}, repoPortlet, {
@@ -76,8 +73,7 @@ const createPortlet = (componentName) => {
       ...config,
       i: shortid.generate(),
     },
-    componentName,
-    component: portlet,
+    componentName: null,
     options,
   });
 };

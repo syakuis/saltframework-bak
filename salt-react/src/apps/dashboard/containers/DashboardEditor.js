@@ -1,14 +1,16 @@
 import React from 'react';
-import Modal from 'react-modal';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { WidthProvider, Responsive } from 'react-grid-layout';
 import { connect } from 'react-redux';
+import store from 'store';
 
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
+import Modal from '_components/modal';
 import { setViewInitialize } from '_actions/view';
 
+import * as componentPortlets from '../portlets';
 import { repoState, repoProps, copyLayoutItem, createPortlet, copyPortlet } from '../repository';
 
 import Navbar from '../components/Navbar';
@@ -31,12 +33,14 @@ class DashboardEditor extends React.Component {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
+    this.save = this.save.bind(this);
+
     this.showLayoutForm = this.showLayoutForm.bind(this);
 
     this.layoutGridItem = this.layoutGridItem.bind(this);
     this.layoutChange = this.layoutChange.bind(this);
-    this.setLayoutConfig = this.setLayoutConfig.bind(this);
 
+    this.setLayoutConfig = this.setLayoutConfig.bind(this);
     this.setPortletOptions = this.setPortletOptions.bind(this);
     this.setPortletConfig = this.setPortletConfig.bind(this);
     this.addPortlet = this.addPortlet.bind(this);
@@ -45,6 +49,15 @@ class DashboardEditor extends React.Component {
 
     this.state = props;
   }
+
+  componentWillMount() {
+    const data = store.get('dashobard');
+    this.setState({
+      ...this.state,
+      ...data,
+    });
+  }
+
 
   setLayoutConfig(config) {
     this.setState({ config });
@@ -83,12 +96,15 @@ class DashboardEditor extends React.Component {
    * @param {*} componentName
    */
   addPortlet(componentName) {
-    const portlet = createPortlet(componentName);
+    const portlet = createPortlet(componentPortlets[componentName]);
 
     this.setState({
       portlets: {
         ...this.state.portlets,
-        [portlet.config.i]: portlet,
+        [portlet.config.i]: {
+          ...portlet,
+          componentName,
+        },
       },
     });
   }
@@ -176,17 +192,29 @@ class DashboardEditor extends React.Component {
     });
   }
 
+  save() {
+    const { config, layout, layouts, portlets } = this.state;
+
+    const data = {
+      config, layout, layouts, portlets,
+    };
+
+    store.set('dashobard', data);
+  }
+
   render() {
     const { config, layout, layouts } = this.state;
     return (
       <div className="bs3-theme dashboard">
         <Navbar
-          portlets={repoProps.portlets}
+          save={this.save}
+          portlets={componentPortlets}
           config={config}
           showLayoutForm={this.showLayoutForm}
           addPortlet={this.addPortlet}
         />
         <Modal
+          title="레이아웃 설정"
           contentLabel="layoutForm"
           isOpen={this.state.isShowLayoutForm}
           onRequestClose={this.showLayoutForm}
@@ -224,4 +252,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardEditor);
-

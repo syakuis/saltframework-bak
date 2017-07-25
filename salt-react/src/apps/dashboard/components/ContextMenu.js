@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactModal from 'react-modal';
+import ReactModal from '_components/modal';
 import PortletForm from './PortletForm';
 
 const propTypes = {
@@ -74,6 +74,7 @@ class ContextMenu extends React.Component {
           </li>
         </ul>
         <ReactModal
+          title="포틀릿 설정"
           contentLabel={this.props.idx}
           isOpen={this.state.modalOpen}
           onRequestClose={this.onModalClose}

@@ -14,4 +14,12 @@ const propTypesPortlet = {
   deletePortlet: PropTypes.func.isRequired,
 };
 
+const propTypesView = {
+  // 해당 포틀릿 정보
+  portlet: PropTypes.object.isRequired,
+  // 해당 포틀릿 idx (고유번호)
+  idx: PropTypes.string.isRequired,
+};
+
 export default propTypesPortlet;
+export { propTypesView };

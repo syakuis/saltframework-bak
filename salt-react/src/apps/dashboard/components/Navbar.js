@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const propTypes = {
+  save: PropTypes.func.isRequired,
   portlets: PropTypes.object.isRequired,
   showLayoutForm: PropTypes.func.isRequired,
   addPortlet: PropTypes.func.isRequired,
@@ -104,18 +106,20 @@ class Navbar extends React.Component {
                     role="button"
                     tabIndex={0}
                     className="btn btn-success plus-btn"
+                    onClick={this.props.save}
                   >
                     <i className="fa fa-check" /> 저장
                   </div>
                 </li>
                 <li>
-                  <div
+                  <Link
+                    to="/"
                     role="button"
                     tabIndex={0}
                     className="btn btn-success plus-btn"
                   >
                     <i className="fa fa-times" /> 닫기
-                  </div>
+                  </Link>
                 </li>
               </ul>
             </div>

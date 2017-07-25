@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import * as componentPortlets from '../portlets';
+
 const propTypes = {
   deletePortlet: PropTypes.func.isRequired,
   setPortletConfig: PropTypes.func.isRequired,
   setPortletOptions: PropTypes.func.isRequired,
   copyPortlet: PropTypes.func.isRequired,
   portlet: PropTypes.object.isRequired,
-  component: PropTypes.func.isRequired,
   idx: PropTypes.string.isRequired, // layout: i = idx
   padding: PropTypes.number.isRequired,
 };
@@ -33,7 +34,7 @@ class CreatePortletComponent extends React.Component {
       padding = 0;
     }
 
-    const CreateComponent = this.props.component;
+    const CreateComponent = componentPortlets[this.props.portlet.componentName];
 
     return (
       <div

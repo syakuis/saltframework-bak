@@ -6,8 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from 'react-modal';
 
+import Modal from '_components/modal';
 import ContextMenu from '../../components/ContextMenu';
 import propTypesPortlet from '../propTypes';
 
@@ -18,7 +18,6 @@ const propTypes = {
 
 const defaultState = {
   isShowModal: false,
-  inputSrc: '',
 };
 
 class Frame extends React.Component {
@@ -50,9 +49,11 @@ class Frame extends React.Component {
     this.onModalClose = this.onModalClose.bind(this);
     this.setInputSrc = this.setInputSrc.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
-      src: this.props.src,
       ...defaultState,
+      src: props.src,
+      inputSrc: props.src,
     };
   }
 
@@ -106,21 +107,11 @@ class Frame extends React.Component {
 
         <Modal
           contentLabel="iframe"
+          title="아이프레임 경로 설정"
           isOpen={this.state.isShowModal}
           onRequestClose={this.onModalClose}
           shouldCloseOnOverlayClick
         >
-          <div className="page-header">
-            <h4>
-              <i
-                className="fa fa-times pull-right"
-                aria-hidden="true"
-                role="button"
-                onClick={this.onModalClose}
-              />
-              아이프레임 경로 설정
-            </h4>
-          </div>
           <div className="form-group">
             <div className="input-group">
               <input

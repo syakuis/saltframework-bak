@@ -11,6 +11,7 @@ const asyncComponent = getComponent => (
       super();
       this.state = { Component: AsyncComponent.Component };
     }
+
     componentWillMount() {
       if (!this.state.Component) {
         getComponent().then((Component) => {
@@ -36,17 +37,14 @@ const asyncComponent = getComponent => (
  * @param {*} route 라우터 정보
  */
 const RouteWithSubRoutes = (route) => {
+  const { component, ...other } = route;
   const Component = asyncComponent(() =>
-    import(`_apps/${route.component}/index.js`).then(module => module.default),
+    import(`_apps/${component}`).then(module => module.default),
   );
-
-  const { exact, strict } = route;
 
   return (
     <Route
-      exact={exact}
-      strict={strict}
-      path={route.url}
+      {...other}
       render={props => (
         <Component {...props} />
       )}
