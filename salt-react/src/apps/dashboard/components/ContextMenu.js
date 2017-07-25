@@ -7,6 +7,7 @@ const propTypes = {
   children: PropTypes.node,
   isShowContextMenu: PropTypes.bool.isRequired,
   idx: PropTypes.string.isRequired,
+  portlet: PropTypes.object.isRequired,
   copyPortlet: PropTypes.func.isRequired,
   deletePortlet: PropTypes.func.isRequired,
   setPortletConfig: PropTypes.func.isRequired,
@@ -21,9 +22,20 @@ class ContextMenu extends React.Component {
   constructor(props) {
     super(props);
 
+    this.onModalOpen = this.onModalOpen.bind(this);
+    this.onModalClose = this.onModalClose.bind(this);
+
     this.state = {
       modalOpen: false,
     };
+  }
+
+  onModalOpen() {
+    this.setState({ modalOpen: true });
+  }
+
+  onModalClose() {
+    this.setState({ modalOpen: false });
   }
 
   render() {
@@ -46,6 +58,7 @@ class ContextMenu extends React.Component {
           <li>
             <button
               className="btn btn-default"
+              onClick={this.onModalOpen}
             >
               <span className="fa fa-crop" aria-hidden="true" />
             </button>
@@ -66,7 +79,11 @@ class ContextMenu extends React.Component {
           onRequestClose={this.onModalClose}
           shouldCloseOnOverlayClick
         >
-          <PortletForm setPortletConfig={this.props.idx} onModalClose={this.onModalClose} />
+          <PortletForm
+            portlet={this.props.portlet}
+            setPortletConfig={this.props.setPortletConfig}
+            onModalClose={this.onModalClose}
+          />
         </ReactModal>
       </div>
     );

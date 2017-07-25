@@ -56,8 +56,10 @@ class DashboardEditor extends React.Component {
     });
 
     this.setState({
-      ...this.state.portlets,
-      portlet,
+      portlets: {
+        ...this.state.portlets,
+        [config.i]: portlet,
+      },
     });
   }
 

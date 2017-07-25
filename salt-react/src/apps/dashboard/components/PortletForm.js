@@ -2,56 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  idx: PropTypes.string.isRequired,
-  dashboard: PropTypes.object.isRequired,
+  portlet: PropTypes.object.isRequired,
   onModalClose: PropTypes.func.isRequired,
-  updatePortlet: PropTypes.func.isRequired,
+  setPortletConfig: PropTypes.func.isRequired,
 };
 
-class PortletUpdate extends React.Component {
+class PortletForm extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.initDataBind = this.initDataBind.bind(this);
-    this.onUpdatePortlet = this.onUpdatePortlet.bind(this);
-    this.state = {
-      ...this.props.dashboard[this.props.idx],
-    };
+    this.onChangePadding = this.onChangePadding.bind(this);
+    this.onChangePadding = this.onChangePadding.bind(this);
+    this.setPortletConfig = this.setPortletConfig.bind(this);
+
+    this.state = props.portlet.config;
   }
 
-  onUpdatePortlet() {
-    this.props.updatePortlet(this.state);
+  onChangePadding(e) {
+    this.setState({
+      padding: e.target.value,
+    });
+  }
+
+  onChangeChecked(e, name) {
+    this.setState({
+      [name]: e.target.checked,
+    });
+  }
+
+  setPortletConfig() {
+    this.props.setPortletConfig(this.state);
     this.props.onModalClose();
-  }
-
-  initDataBind(e) {
-    let datatype = e.target.attributes.getNamedItem('datatype');
-    let value = e.target.value;
-
-    if (datatype != null) {
-      datatype = datatype.value;
-    }
-
-    switch (e.target.type) {
-      case 'checkbox':
-        value = e.target.checked;
-        break;
-      default:
-        break;
-    }
-
-    switch (datatype) {
-      case 'number':
-        value = parseFloat(value);
-        break;
-      case 'boolean':
-        if (typeof value === 'boolean') value = Boolean(value);
-        break;
-      default:
-    }
-
-    this.setState({ [e.target.name]: value });
   }
 
   render() {
@@ -63,7 +45,7 @@ class PortletUpdate extends React.Component {
               className="fa fa-times pull-right"
               aria-hidden="true"
               role="button"
-              onClick={this.onModalClose}
+              onClick={this.props.onModalClose}
             />
             포틀릿 설정
           </h4>
@@ -76,70 +58,35 @@ class PortletUpdate extends React.Component {
             placeholder="padding"
             name="padding"
             datatype="number"
-            onChange={this.initDataBind}
+            onChange={this.onChangePadding}
             value={this.state.padding}
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="static">static</label>
+        <div className="checkbox">
           <label htmlFor="static" className="checkbox-inline">
-            <input
-              type="checkbox"
-              name="static"
-              datatype="boolean"
-              checked={this.state.static}
-              onChange={this.initDataBind}
-            /> 사용
-           </label>
-        </div>
-        <div className="form-group">
-          <label htmlFor="draggable">draggable</label>
-          <label htmlFor="draggable" className="checkbox-inline">
-            <input
-              type="checkbox"
-              name="isDraggable"
-              datatype="boolean"
-              onChange={this.initDataBind}
-              checked={this.state.isDraggable}
-            /> 사용
+            <input id="static" type="checkbox" onChange={e => this.onChangeChecked(e, 'static')} checked={this.state.static} /> static
+          </label>
+          <label htmlFor="isDraggable" className="checkbox-inline">
+            <input id="isDraggable" type="checkbox" onChange={e => this.onChangeChecked(e, 'isDraggable')} checked={this.state.isDraggable} /> draggable
+          </label>
+          <label htmlFor="isResizable" className="checkbox-inline">
+            <input id="isResizable" type="checkbox" onChange={e => this.onChangeChecked(e, 'isResizable')} checked={this.state.isResizable} /> resizable
           </label>
         </div>
-        <div className="form-group">
-          <label htmlFor="resizable">resizable</label>
-          <label htmlFor="resizable" className="checkbox-inline">
-            <input
-              type="checkbox"
-              name="isResizable"
-              datatype="boolean"
-              onChange={this.initDataBind}
-              checked={this.state.isResizable}
-            /> 사용
-          </label>
+
+        <div className="text-center">
+          <button
+            className="btn btn-success"
+            type="button"
+            onClick={this.setPortletConfig}
+          ><i className="fa fa-check" aria-hidden="true" /> 저장</button>&nbsp;
         </div>
-        <button
-          className="btn btn-default"
-          type="button"
-          onClick={this.onUpdatePortlet}
-        >저장</button>&nbsp;
-        <button
-          className="btn btn-default"
-          type="button"
-          onClick={this.props.onModalClose}
-        >닫기</button>
       </div>
     );
   }
 }
 
-PortletUpdate.propTypes = propTypes;
+PortletForm.propTypes = propTypes;
 
-const mapStateToProps = state => ({
-  dashboard: state.dashboard.dashboard,
-});
-
-const mapDispatchToProps = dispatch => ({
-  updatePortlet: portlet => dispatch(updatePortlet(portlet)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PortletUpdate);
+export default PortletForm;

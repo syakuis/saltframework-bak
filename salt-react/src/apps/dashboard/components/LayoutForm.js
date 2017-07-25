@@ -74,7 +74,7 @@ class LayoutForm extends React.Component {
         <div className="form-group">
           <label htmlFor>여백 조정</label>
           <div className="row">
-            <div className="col-xs-1">
+            <div className="col-xs-3">
               <input
                 key="whiteSpace_0"
                 type="text"
@@ -85,7 +85,7 @@ class LayoutForm extends React.Component {
                 value={this.state.whiteSpace[0]}
               />
             </div>
-            <div className="col-xs-1">
+            <div className="col-xs-3">
               <input
                 key="whiteSpace_1"
                 type="text"
@@ -96,7 +96,7 @@ class LayoutForm extends React.Component {
                 value={this.state.whiteSpace[1]}
               />
             </div>
-            <div className="col-xs-1">
+            <div className="col-xs-3">
               <input
                 key="whiteSpace_2"
                 type="text"
@@ -107,7 +107,7 @@ class LayoutForm extends React.Component {
                 value={this.state.whiteSpace[2]}
               />
             </div>
-            <div className="col-xs-1">
+            <div className="col-xs-3">
               <input
                 key="whiteSpace_3"
                 type="text"

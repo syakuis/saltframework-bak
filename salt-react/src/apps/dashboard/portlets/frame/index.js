@@ -86,6 +86,7 @@ class Frame extends React.Component {
       <div className="pull-portlet">
         <ContextMenu
           idx={this.props.idx}
+          portlet={this.props.portlet}
           copyPortlet={this.props.copyPortlet}
           deletePortlet={this.props.deletePortlet}
           setPortletConfig={this.props.setPortletConfig}
