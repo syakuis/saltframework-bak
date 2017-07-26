@@ -8,17 +8,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  portletConfig: PropTypes.object.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
-function createMarkup(data) {
-  return { __html: data };
+function createMarkup(text) {
+  return { __html: text };
 }
 
-const View = props => (
-  <div className="pull-portlet" dangerouslySetInnerHTML={createMarkup(props.portletConfig.data)} />
+const Editor = props => (
+  <div className="pull-portlet" dangerouslySetInnerHTML={createMarkup(props.text)} />
 );
 
-View.propTypes = propTypes;
+Editor.propTypes = propTypes;
 
-export default View;
+export default Editor;

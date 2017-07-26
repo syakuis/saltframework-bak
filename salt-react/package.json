@@ -26,8 +26,7 @@
       "qs",
       "axios",
       "store",
-      "nprogress",
-      "ckeditor"
+      "nprogress"
     ]
   },
   "scripts": {
@@ -50,6 +49,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-3": "^6.22.0",
     "bundle-loader": "^0.5.5",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "^15.0.1",
@@ -71,7 +71,7 @@
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "bootstrap": "^3.3.7",
-    "ckeditor": "4.7.1",
+    "ckeditor": "https://github.com/ckeditor/ckeditor-releases.git#full/4.7.1",
     "extract-text-webpack-plugin": "^2.0.0",
     "font-awesome": "^4.7.0",
     "hover.css": "^2.2.0",

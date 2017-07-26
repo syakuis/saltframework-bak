@@ -15,7 +15,7 @@ const ViewPortletComponent = (props) => {
 
   return (
     <div
-      className="pull-portlet portlet-editor"
+      className="pull-portlet"
       style={{ padding }}
     >
       <CreateComponent

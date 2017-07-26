@@ -7,29 +7,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Editor from './Editor';
-import View from './View';
+import Ckeditor from '_components/editor/Ckeditor';
+import propTypesPortlet from '../propTypes';
 
 import screenshot from './images/screenshot.png';
 
 const propTypes = {
-  idx: PropTypes.string.isRequired,
-  isContextMenuShow: PropTypes.bool.isRequired,
-  isView: PropTypes.bool.isRequired,
-  portletConfig: PropTypes.object.isRequired,
-
-  updatePortletConfig: PropTypes.func.isRequired,
+  ...propTypesPortlet,
+  text: PropTypes.string.isRequired,
 };
 
-class PageHtml extends React.Component {
+const defaultState = {
+  isShowModal: false,
+};
+
+
+class Editor extends React.Component {
   static getDefault() {
     return {
       title: '에디터 포틀릿',
       image: screenshot,
-      portletConfig: {
-        data: '',
-      },
       options: {
+        text: '',
+      },
+      config: {
         padding: 5,
         w: 12,
         h: 30,
@@ -41,27 +42,36 @@ class PageHtml extends React.Component {
       },
     };
   }
+  constructor(props) {
+    super(props);
+
+    this.onCkeditorText = this.onCkeditorText.bind(this);
+  }
+
+  onCkeditorText(text) {
+    this.props.setPortletOptions({
+      ...this.props.portlet,
+      options: {
+        text,
+      },
+    });
+  }
 
   render() {
-    if (this.props.isView) {
-      return (
-        <View
-          idx={this.props.idx}
-          portletConfig={this.props.portletConfig}
-        />
-      );
-    }
     return (
-      <Editor
-        idx={this.props.idx}
-        isContextMenuShow={this.props.isContextMenuShow}
-        updatePortletConfig={this.props.updatePortletConfig}
-        portletConfig={this.props.portletConfig}
-      />
+      <div className="pull-portlet">
+        <Ckeditor
+          elementId={this.props.idx}
+          inline
+          onRequestData={this.onCkeditorText}
+          data={this.props.text}
+        />
+      </div>
     );
   }
 }
 
-PageHtml.propTypes = propTypes;
+Editor.propTypes = propTypes;
+Editor.defaultState = defaultState;
 
-export default PageHtml;
+export default Editor;

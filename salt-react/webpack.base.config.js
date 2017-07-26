@@ -8,6 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const pkg = require('./package.json');
 
@@ -31,6 +32,11 @@ module.exports = (env) => {
     },
 
     plugins: [
+      new CopyWebpackPlugin([{
+        context: path.join(__dirname, 'node_modules/ckeditor'),
+        from: '**/*',
+        to: path.join(__dirname, `${output}/js/ckeditor`),
+      }]),
       new webpack.optimize.CommonsChunkPlugin({
         names: ['commons', 'vendors'],
         minChunks: 2,
