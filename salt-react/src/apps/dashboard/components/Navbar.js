@@ -26,14 +26,14 @@ class Navbar extends React.Component {
   getPortlets() {
     return Object.keys(this.props.portlets).reduce((result, key) => {
       const portlet = this.props.portlets[key];
-      const { config, options, ...info } = portlet.getDefault();
+      const { config, data, ...info } = portlet.getDefault();
 
       return {
         ...result,
         [key]: {
           info,
           config,
-          options,
+          data,
           portlet,
         },
       };

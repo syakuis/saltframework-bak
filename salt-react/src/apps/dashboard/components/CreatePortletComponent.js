@@ -6,7 +6,7 @@ import * as componentPortlets from '../portlets';
 const propTypes = {
   deletePortlet: PropTypes.func.isRequired,
   setPortletConfig: PropTypes.func.isRequired,
-  setPortletOptions: PropTypes.func.isRequired,
+  setPortletData: PropTypes.func.isRequired,
   copyPortlet: PropTypes.func.isRequired,
   portlet: PropTypes.object.isRequired,
   idx: PropTypes.string.isRequired, // layout: i = idx
@@ -45,12 +45,12 @@ class CreatePortletComponent extends React.Component {
       >
         <CreateComponent
           className="pull-portlet"
-          {...this.props.portlet.options}
+          {...this.props.portlet.data}
           portlet={this.props.portlet}
           idx={this.props.idx}
           isShowContextMenu={this.state.isShowContextMenu}
           setPortletConfig={this.props.setPortletConfig}
-          setPortletOptions={this.props.setPortletOptions}
+          setPortletData={this.props.setPortletData}
           copyPortlet={this.props.copyPortlet}
           deletePortlet={this.props.deletePortlet}
         />

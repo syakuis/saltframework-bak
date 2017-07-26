@@ -41,7 +41,7 @@ class DashboardEditor extends React.Component {
     this.layoutChange = this.layoutChange.bind(this);
 
     this.setLayoutConfig = this.setLayoutConfig.bind(this);
-    this.setPortletOptions = this.setPortletOptions.bind(this);
+    this.setPortletData = this.setPortletData.bind(this);
     this.setPortletConfig = this.setPortletConfig.bind(this);
     this.addPortlet = this.addPortlet.bind(this);
     this.copyPortlet = this.copyPortlet.bind(this);
@@ -51,6 +51,7 @@ class DashboardEditor extends React.Component {
   }
 
   componentWillMount() {
+    // 백엔드에 저장할 수 없어 임시로 로컬 저장소를 사용한다.
     const data = store.get('dashobard');
     this.setState({
       ...this.state,
@@ -77,10 +78,10 @@ class DashboardEditor extends React.Component {
   }
 
   /**
-   * react-grid-layout 에 추가된 포틀릿의 오션을 제어한다.
+   * react-grid-layout 에 추가된 포틀릿의 값을 제어한다.
    * @param {*} portlet
    */
-  setPortletOptions(portlet) {
+  setPortletData(portlet) {
     const portlets = Object.assign({}, {
       ...this.state.portlets,
       [portlet.config.i]: portlet,
@@ -183,7 +184,7 @@ class DashboardEditor extends React.Component {
             padding={config.padding}
             portlet={portlet}
             setPortletConfig={this.setPortletConfig}
-            setPortletOptions={this.setPortletOptions}
+            setPortletData={this.setPortletData}
             copyPortlet={this.copyPortlet}
             deletePortlet={this.deletePortlet}
           />
@@ -193,6 +194,7 @@ class DashboardEditor extends React.Component {
   }
 
   save() {
+    // 백엔드에 저장할 수 없어 임시로 로컬 저장소를 사용한다.
     const { config, layout, layouts, portlets } = this.state;
 
     const data = {

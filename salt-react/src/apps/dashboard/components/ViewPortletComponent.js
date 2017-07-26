@@ -20,7 +20,7 @@ const ViewPortletComponent = (props) => {
     >
       <CreateComponent
         className="pull-portlet"
-        {...props.portlet.options}
+        {...props.portlet.data}
         portlet={props.portlet}
         idx={props.idx}
       />

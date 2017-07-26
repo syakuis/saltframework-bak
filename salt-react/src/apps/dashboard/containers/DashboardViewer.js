@@ -34,6 +34,7 @@ class DashboardViewer extends React.Component {
   }
 
   componentWillMount() {
+    // 백엔드에 저장할 수 없어 임시로 로컬 저장소를 사용한다.
     const data = store.get('dashobard');
     this.setState({
       ...this.state,

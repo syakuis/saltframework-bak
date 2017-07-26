@@ -27,13 +27,13 @@ class Editor extends React.Component {
     return {
       title: '에디터 포틀릿',
       image: screenshot,
-      options: {
+      data: {
         text: '',
       },
       config: {
         padding: 5,
         w: 12,
-        h: 30,
+        h: 12,
         x: 0,
         y: Infinity,
         static: false,
@@ -49,9 +49,9 @@ class Editor extends React.Component {
   }
 
   onCkeditorText(text) {
-    this.props.setPortletOptions({
+    this.props.setPortletData({
       ...this.props.portlet,
-      options: {
+      data: {
         text,
       },
     });

@@ -18,8 +18,8 @@ const repoPortlet = {
   config: repoLayout,
   componentName: null,
   component: null,
-  // portlet options
-  options: {},
+  // portlet data
+  data: {},
 };
 
 const repoProps = {
@@ -66,7 +66,7 @@ const copyLayoutItem = (data, index, newIndex) => {
  */
 const createPortlet = (portlet) => {
   // config = react-grid-layout , options = portlet value
-  const { config, options } = portlet.getDefault();
+  const { config, data } = portlet.getDefault();
   return Object.assign({}, repoPortlet, {
     config: {
       ...repoLayout,
@@ -74,7 +74,7 @@ const createPortlet = (portlet) => {
       i: shortid.generate(),
     },
     componentName: null,
-    options,
+    data,
   });
 };
 

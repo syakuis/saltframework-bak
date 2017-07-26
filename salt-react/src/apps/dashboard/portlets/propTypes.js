@@ -8,7 +8,7 @@ const propTypesPortlet = {
   // 해당 포틀릿 idx (고유번호)
   idx: PropTypes.string.isRequired,
   // 변경된 포틀릿 정보 업데이트
-  setPortletOptions: PropTypes.func.isRequired,
+  setPortletData: PropTypes.func.isRequired,
   setPortletConfig: PropTypes.func.isRequired,
   copyPortlet: PropTypes.func.isRequired,
   deletePortlet: PropTypes.func.isRequired,

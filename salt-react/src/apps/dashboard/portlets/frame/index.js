@@ -26,7 +26,7 @@ class Frame extends React.Component {
     return {
       title: '아이프레임 포틀릿',
       image: null,
-      options: {
+      data: {
         src: '',
       },
       config: {
@@ -66,9 +66,9 @@ class Frame extends React.Component {
       src: this.state.inputSrc,
     });
 
-    this.props.setPortletOptions({
+    this.props.setPortletData({
       ...this.props.portlet,
-      options: {
+      data: {
         src: this.state.inputSrc,
       },
     });
