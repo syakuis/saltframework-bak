@@ -10,7 +10,7 @@ import 'react-resizable/css/styles.css';
 import Modal from '_components/modal';
 import { setViewInitialize } from '_actions/view';
 
-import * as componentPortlets from '../portlets';
+import * as componentPortlets from '../portlets/edit';
 import { repoState, repoProps, copyLayoutItem, createPortlet, copyPortlet } from '../repository';
 
 import Navbar from '../components/Navbar';

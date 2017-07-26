@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as componentPortlets from '../portlets';
+import * as componentPortlets from '../portlets/edit';
 
 const propTypes = {
   deletePortlet: PropTypes.func.isRequired,

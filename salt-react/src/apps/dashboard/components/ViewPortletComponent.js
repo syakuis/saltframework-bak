@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as componentPortlets from '../portlets/views';
+import * as componentPortlets from '../portlets';
 
 const propTypes = {
   portlet: PropTypes.object.isRequired,
