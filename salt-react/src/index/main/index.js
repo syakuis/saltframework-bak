@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { BrowserRouter as Router, browserHistory } from 'react-router-dom';
+import { HashRouter as Router, browserHistory } from 'react-router-dom';
 import shortid from 'shortid';
 
 import 'bootstrap/dist/css/bootstrap.css';

@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 
 import Ckeditor from '_components/editor/Ckeditor';
 import propTypesPortlet from '../propTypes';
+import ContextMenu from '../../components/ContextMenu';
 
 import screenshot from './images/screenshot.png';
 
@@ -60,6 +61,14 @@ class Editor extends React.Component {
   render() {
     return (
       <div className="pull-portlet">
+        <ContextMenu
+          idx={this.props.idx}
+          portlet={this.props.portlet}
+          copyPortlet={this.props.copyPortlet}
+          deletePortlet={this.props.deletePortlet}
+          setPortletConfig={this.props.setPortletConfig}
+          isShowContextMenu={this.props.isShowContextMenu}
+        />
         <Ckeditor
           elementId={this.props.idx}
           inline

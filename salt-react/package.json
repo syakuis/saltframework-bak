@@ -26,7 +26,8 @@
       "qs",
       "axios",
       "store",
-      "nprogress"
+      "nprogress",
+      "immutable"
     ]
   },
   "scripts": {
