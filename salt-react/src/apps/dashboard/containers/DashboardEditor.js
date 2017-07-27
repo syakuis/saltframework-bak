@@ -1,14 +1,12 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { WidthProvider, Responsive } from 'react-grid-layout';
-import { connect } from 'react-redux';
 import store from 'store';
 
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
 import Modal from '_components/modal';
-import { setViewInitialize } from '_actions/view';
 
 import * as componentPortlets from '../portlets/edit';
 import { repoState, repoProps, copyLayoutItem, createPortlet, copyPortlet } from '../repository';
@@ -245,12 +243,4 @@ class DashboardEditor extends React.Component {
 
 DashboardEditor.defaultProps = defaultProps;
 
-const mapStateToProps = state => ({
-  data: state.view,
-});
-
-const mapDispatchToProps = dispatch => ({
-  setViewInitialize: data => dispatch(setViewInitialize(data)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardEditor);
+export default DashboardEditor;

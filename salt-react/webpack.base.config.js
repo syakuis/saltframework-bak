@@ -13,7 +13,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const pkg = require('./package.json');
 
 module.exports = (env) => {
-  const { port, publicPath, proxyHost, vendors } = Object.assign({}, pkg.config, env);
+  const { port, publicPath, apiPath, proxyHost, vendors } = Object.assign({}, pkg.config, env);
   const output = pkg.config.output;
   const src = pkg.config.src;
 
@@ -102,15 +102,15 @@ module.exports = (env) => {
 
     resolve: {
       alias: {
-        _apps: path.resolve(__dirname, `${src}/apps`),
-        _utils: path.resolve(__dirname, `${src}/utils`),
         _resources: path.resolve(__dirname, `${src}/resources`),
+        _index: path.resolve(__dirname, `${src}/index`),
+        _components: path.resolve(__dirname, `${src}/components`),
         _layouts: path.resolve(__dirname, `${src}/layouts`),
+        _apps: path.resolve(__dirname, `${src}/apps`),
+        // _containers: path.resolve(__dirname, `${src}/containers`),
+        _utils: path.resolve(__dirname, `${src}/utils`),
         _actions: path.resolve(__dirname, `${src}/actions`),
         _reducers: path.resolve(__dirname, `${src}/reducers`),
-        _components: path.resolve(__dirname, `${src}/components`),
-        _containers: path.resolve(__dirname, `${src}/containers`),
-        _index: path.resolve(__dirname, `${src}/index`),
       },
     },
 
@@ -119,9 +119,9 @@ module.exports = (env) => {
       port,
       contentBase: output,
       proxy: {
-        '/api': {
+        [apiPath]: {
           target: proxyHost,
-          pathRewrite: { '^/api': '' }, // proxy path 를 제거하도록 다시 쓴다.
+          pathRewrite: { [`^${apiPath}`]: '' }, // proxy path 를 제거하도록 다시 쓴다.
           secure: false,
           prependPath: true, // target 에 경로를 사용한다.
         },

@@ -11,6 +11,7 @@
   "config": {
     "port": 8088,
     "publicPath": "/",
+    "apiPath": "/api",
     "proxyHost": "http://localhost:8080",
     "output": "dist",
     "src": "src",
