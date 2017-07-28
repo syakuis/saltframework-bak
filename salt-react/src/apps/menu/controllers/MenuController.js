@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 const propTypes = {
   template: PropTypes.func.isRequired,
   menus: PropTypes.array.isRequired,
-  parentId: PropTypes.string,
+  parentIdx: PropTypes.string,
 };
 
 const defaultProps = {
-  parentId: null, // 최상위 id = menu
+  parentIdx: null, // 최상위 id = menu
 };
 
 const MenuController = (props) => {
-  const menus = props.parentId !== null ? props.menus.reduce((result, menu) => {
-    if (menu.parent_id === props.parentId) {
+  const menus = props.parentIdx !== null ? props.menus.reduce((result, menu) => {
+    if (menu.parentIdx === props.parentIdx) {
       return result.concat(menu);
     }
     return result;

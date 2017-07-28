@@ -13,8 +13,8 @@ const Header = (props) => {
   const MenuTemplate = menus => (
     <ul className="nav navbar-nav blog-nav">
       {menus.map(item => (
-        <li key={item.menu_tree_idx}>
-          { item.url !== null ? <Link to={item.url}>{item.tree_name}</Link> : <a href="">{item.tree_name}</a> }
+        <li key={item.idx}>
+          { item.path !== null ? <Link to={item.path}>{item.name}</Link> : <a href="">{item.name}</a> }
         </li>
       ))}
     </ul>
@@ -85,7 +85,7 @@ const Header = (props) => {
           </div>
           <div id="navbar" className="collapse navbar-collapse">
             <ul className="nav navbar-nav blog-nav">
-              <MenuController template={MenuTemplate} menus={props.menus} parentId="menu" />
+              <MenuController template={MenuTemplate} menus={props.menus} parentIdx="menu" />
             </ul>
           </div>
         </div>

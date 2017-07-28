@@ -26,25 +26,31 @@ class MainIndex extends React.Component {
 
     this.menus = [
       {
-        title: '홈',
+        name: '홈',
         path: '/',
         component: 'dashboard/index.js',
         exact: true,
         strict: false,
+        idx: 1,
+        parentIdx: 'menu',
       },
       {
-        title: '로그인',
+        name: '로그인',
         path: '/login',
         component: '/dashboard2/index.js',
         exact: false,
         strict: false,
+        idx: 2,
+        parentIdx: 'menu',
       },
       {
-        title: '데모',
+        name: '데모',
         path: '/demo',
         component: '/demo/index.js',
         exact: false,
         strict: false,
+        idx: 3,
+        parentIdx: 'menu',
       },
     ];
   }
